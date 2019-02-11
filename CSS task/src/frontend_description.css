@@ -1,0 +1,33 @@
+body {
+    background-color: #FEEED7;
+    font-size: 18px;
+    font-family: "Helvetica Neue", serif;
+    color: dimgrey;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-weight: unset;
+    font-size: 30px;
+    margin-bottom: 0.3em;
+}
+
+.previous_value {
+    text-decoration: line-through;
+}
+
+label {
+    color: #3D8EAD;
+    font-weight: bold;
+}
+
+.course_description {
+    font-family: "Helvetica Neue", serif;
+    line-height: 1.3em;
+    white-space: pre-wrap;
+}
+
+p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}

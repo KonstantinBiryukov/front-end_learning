@@ -1,0 +1,57 @@
+body {
+    padding: 12px;
+}
+
+form {
+    padding: 15px;
+    width: 50%;
+
+    background-color: #FEEED7;
+    font-size: 12px;
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+input, textarea {
+    display: block;
+    margin-top: 0.4em;
+    margin-bottom: 1.2em;
+}
+
+input[type="text"],
+input[type="tel"],
+textarea {
+    padding: 6px;
+    background: white;
+    border: none;
+}
+
+#submit_button {
+    width: 130px;
+    height: 30px;
+    margin: 1em 0 0 auto;
+
+    background-color: #3D8EAD;
+    color: white;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.input_field {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+footer {
+    color: grey;
+}
+
+h1 {
+    margin-left: 1em;
+    margin-bottom: 0.2em;
+
+    font-size: 22px;
+    font-weight: unset;
+    font-family: "Helvetica Neue", sans-serif;
+    color: grey;
+}
