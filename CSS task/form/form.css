@@ -7,7 +7,7 @@ form {
     width: 50%;
 
     background-color: #FEEED7;
-    font-size: 12px;
+    font-size: 11px;
     font-family: "Helvetica Neue", sans-serif;
 }
 
@@ -23,9 +23,17 @@ textarea {
     padding: 6px;
     background: white;
     border: none;
+    font-family: "Helvetica Neue", sans-serif;
+    height: 26px;
 }
 
-#submit_button {
+
+textarea {
+    font-family: "Arial", sans-serif;
+    height: 84px;
+}
+
+.submit_button {
     width: 130px;
     height: 30px;
     margin: 1em 0 0 auto;
@@ -35,6 +43,12 @@ textarea {
 
     font-size: 12px;
     font-weight: bold;
+    border: none;
+}
+
+.submit_button:hover {
+    background-color: lightslategrey;
+    cursor: pointer;
 }
 
 .input_field {
@@ -47,10 +61,10 @@ footer {
 }
 
 h1 {
-    margin-left: 1em;
+    margin-left: 0.7em;
     margin-bottom: 0.2em;
 
-    font-size: 22px;
+    font-size: 20px;
     font-weight: unset;
     font-family: "Helvetica Neue", sans-serif;
     color: grey;
