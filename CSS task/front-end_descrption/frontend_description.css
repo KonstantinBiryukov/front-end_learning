@@ -1,8 +1,9 @@
 body {
     background-color: #FEEED7;
     font-size: 18px;
-    font-family: "Helvetica Neue", serif;
+    font-family: "Helvetica Neue", sans-serif;
     color: dimgrey;
+    margin: 11px;
 }
 
 h1 {
@@ -16,18 +17,20 @@ h1 {
     text-decoration: line-through;
 }
 
-label {
+h2 {
     color: #3D8EAD;
     font-weight: bold;
+    display: inline;
+    font-size: 18px;
 }
 
 .course_description {
-    font-family: "Helvetica Neue", serif;
-    line-height: 1.3em;
+    font-family: "Helvetica", sans-serif;
+    line-height: 1.5em;
     white-space: pre-wrap;
 }
 
 p {
     margin-top: 0.5em;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.7em;
 }
