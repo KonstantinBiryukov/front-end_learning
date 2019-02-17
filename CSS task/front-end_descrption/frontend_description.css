@@ -1,9 +1,10 @@
 body {
     background-color: #FEEED7;
-    font-size: 18px;
+    font-size: 16px;
     font-family: "Helvetica Neue", sans-serif;
     color: dimgrey;
     margin: 11px;
+    width: 765px;
 }
 
 h1 {
@@ -13,10 +14,6 @@ h1 {
     margin-bottom: 0.3em;
 }
 
-.previous_value {
-    text-decoration: line-through;
-}
-
 h2 {
     color: #3D8EAD;
     font-weight: bold;
@@ -24,13 +21,22 @@ h2 {
     font-size: 18px;
 }
 
+p {
+    margin: 0.5em 0;
+    text-indent: 1em;
+    text-align: justify;
+}
+
+.previous_value {
+    text-decoration: line-through;
+}
+
+.course_header {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
 .course_description {
     font-family: "Helvetica", sans-serif;
     line-height: 1.5em;
-    white-space: pre-wrap;
-}
-
-p {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
 }

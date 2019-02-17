@@ -1,70 +1,82 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 12px;
+    color: #676B7C;
+    width: 730px;
 }
 
 form {
     padding: 15px;
-    width: 50%;
-
     background-color: #FEEED7;
-    font-size: 11px;
+    font-size: 14px;
     font-family: "Helvetica Neue", sans-serif;
-}
-
-input, textarea {
-    display: block;
-    margin-top: 0.4em;
-    margin-bottom: 1.2em;
-}
-
-input[type="text"],
-input[type="tel"],
-textarea {
-    padding: 6px;
-    background: white;
-    border: none;
-    font-family: "Helvetica Neue", sans-serif;
-    height: 26px;
-}
-
-textarea {
-    font-family: "Arial", sans-serif;
-    height: 84px;
-}
-
-.submit_button {
-    width: 130px;
-    height: 30px;
-    margin: 1em 0 0 auto;
-
-    background-color: #3D8EAD;
-    color: white;
-
-    font-size: 12px;
-    font-weight: bold;
-    border: none;
-}
-
-.submit_button:hover {
-    background-color: lightslategrey;
-    cursor: pointer;
-}
-
-.input_field {
-    box-sizing: border-box;
-    width: 100%;
-}
-
-footer {
-    color: grey;
 }
 
 h1 {
     margin-left: 0.7em;
     margin-bottom: 0.2em;
 
-    font-size: 20px;
+    font-size: 25px;
     font-weight: unset;
     font-family: "Helvetica Neue", sans-serif;
     color: grey;
+}
+
+input, textarea {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 1.2em;
+}
+
+input[type="text"],
+input[type="tel"],
+textarea {
+    padding-left: 12px;
+    border: none;
+    height: 35px;
+
+    background: white;
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 14px;
+}
+
+textarea {
+    padding-top: 8px;
+    height: 115px;
+    font-family: "Arial", sans-serif;
+    resize: vertical;
+}
+
+footer {
+    color: grey;
+}
+
+label {
+    font-weight: bold;
+    color: black;
+}
+
+.submit_button {
+    width: 150px;
+    height: 32px;
+    margin: 1em 0 0 auto;
+    border: none;
+
+    background-color: #3D8EAD;
+    color: white;
+
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.submit_button:hover {
+    background-color: lightslategrey;
+}
+
+.input_field {
+    width: 100%;
 }
