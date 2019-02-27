@@ -22,20 +22,15 @@ console.log("Array sorted in descending order: " + intArray);
 var first5Elements = intArray.slice(0, 5);
 console.log("First 5 sorted elements: " + first5Elements);
 
-var last5Elements = intArray.slice(intArray.length - 5, intArray.length);
+var last5Elements = intArray.slice(intArray.length - 5);
 console.log("Last 5 sorted elements: " + last5Elements);
 
-function findEvenElementsSum(array) {
-    var evenElementsSum = 0;
-    for (var i = 0; i < array.length; i++) {
-        if (array[i] % 2 === 0) {
-            evenElementsSum = evenElementsSum + array[i];
-        }
+var arrayEvenElementsSum = intArray.reduce(function (sum, element) {
+    if (element % 2 === 0) {
+        sum += element;
     }
-    return evenElementsSum;
-}
-
-var arrayEvenElementsSum = findEvenElementsSum(intArray);
+    return sum;
+});
 console.log("Sum of the even elements: " + arrayEvenElementsSum);
 
 // (2)
@@ -50,15 +45,13 @@ function init100ConsecutiveIntegers() {
 var elements100Array = init100ConsecutiveIntegers();
 console.log(elements100Array);
 
-function createEvenIntegersSquaresList(array) {
-    var evenSquaresList = [];
-    for (var i = 0; i < array.length; i++) {
-        if (array[i] % 2 === 0) {
-            evenSquaresList.push(array[i] * array[i]);
-        }
-    }
-    return evenSquaresList;
-}
-
-var evenSquaresList = createEvenIntegersSquaresList(elements100Array);
-console.log(evenSquaresList);
+elements100Array
+    .filter(function (value) {
+        return value % 2 === 0;
+    })
+    .map(function (value) {
+        return Math.pow(value, 2);
+    })
+    .forEach(function (evenSquareNumber) {
+        console.log(evenSquareNumber);
+    });

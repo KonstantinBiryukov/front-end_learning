@@ -74,16 +74,28 @@ var countriesArray = [russia, usa, poland];
 console.log(countriesArray);
 
 // (2)
+// function findCountryWithMaxCitiesQuantity(countriesArray) {
+//     var maxCitiesQuantity = 0;
+//     var maxCitiesCountryName;
+//     for (var i = 0; i < countriesArray.length; i++) {
+//         var currentCitiesQuantity = countriesArray[i].cities.length;
+//         if (currentCitiesQuantity > maxCitiesQuantity) {
+//             maxCitiesQuantity = currentCitiesQuantity;
+//             maxCitiesCountryName = countriesArray[i].name;
+//         }
+//     }
+//     return maxCitiesCountryName;
+// }
+
+// Найдите страну/страны с максимальным количеством городов
 function findCountryWithMaxCitiesQuantity(countriesArray) {
-    var maxCitiesQuantity = 0;
-    for (var i = 0; i < countriesArray.length; i++) {
-        var currentCitiesQuantity = countriesArray[i].cities.length;
-        if (currentCitiesQuantity > maxCitiesQuantity) {
-            maxCitiesQuantity = currentCitiesQuantity;
-            var maxCitiesCountryName = countriesArray[i].name;
+    return countriesArray.reduce(function (maxCitiesQuantity, country) {
+        if (maxCitiesQuantity.cities.length > country.cities.length) {
+            return maxCitiesQuantity.name;
+        } else {
+            return country;
         }
-    }
-    return maxCitiesCountryName;
+    });
 }
 
 console.log("Max quantity of cities in " + findCountryWithMaxCitiesQuantity(countriesArray));
@@ -102,5 +114,4 @@ function getSumPopulation(countries) {
     return sumPopulation;
 }
 
-var countriesPopulation = getSumPopulation(countriesArray);
-console.log(countriesPopulation);
+console.log(getSumPopulation(countriesArray));
