@@ -22,6 +22,14 @@ var russia = {
         {
             name: "Saint-Petersburg",
             population: 5381736
+        },
+        {
+            name: "Ekaterinburg",
+            population: 1468833
+        },
+        {
+            name: "Perm",
+            population: 1051583
         }
     ]
 };
@@ -74,28 +82,17 @@ var countriesArray = [russia, usa, poland];
 console.log(countriesArray);
 
 // (2)
-// function findCountryWithMaxCitiesQuantity(countriesArray) {
-//     var maxCitiesQuantity = 0;
-//     var maxCitiesCountryName;
-//     for (var i = 0; i < countriesArray.length; i++) {
-//         var currentCitiesQuantity = countriesArray[i].cities.length;
-//         if (currentCitiesQuantity > maxCitiesQuantity) {
-//             maxCitiesQuantity = currentCitiesQuantity;
-//             maxCitiesCountryName = countriesArray[i].name;
-//         }
-//     }
-//     return maxCitiesCountryName;
-// }
-
-// Найдите страну/страны с максимальным количеством городов
 function findCountryWithMaxCitiesQuantity(countriesArray) {
-    return countriesArray.reduce(function (maxCitiesQuantity, country) {
-        if (maxCitiesQuantity.cities.length > country.cities.length) {
-            return maxCitiesQuantity.name;
-        } else {
-            return country;
+    var countryWithMaxCities = [];
+    var maxCitiesQuantity = 0;
+    countriesArray.forEach(function (country) {
+        var currentCitiesQuantity = country.cities.length;
+        if (currentCitiesQuantity >= maxCitiesQuantity) {
+            maxCitiesQuantity = currentCitiesQuantity;
+            countryWithMaxCities.push(country.name);
         }
     });
+    return countryWithMaxCities;
 }
 
 console.log("Max quantity of cities in " + findCountryWithMaxCitiesQuantity(countriesArray));
@@ -103,14 +100,13 @@ console.log("Max quantity of cities in " + findCountryWithMaxCitiesQuantity(coun
 // (3)
 function getSumPopulation(countries) {
     var sumPopulation = {};
-    for (var i = 0; i < countries.length; i++) {
-        var totalPopulation = 0;
-        var countryName = countries[i].name;
-        for (var j = 0; j < countries[i].cities.length; j++) {
-            totalPopulation += countries[i].cities[j].population;
-        }
-        sumPopulation[countryName] = totalPopulation;
-    }
+    countries.forEach(function (countriesArray) {
+        var countryName = countriesArray.name;
+        sumPopulation[countryName] = countriesArray.cities.reduce(function (totalPopulation, cities) {
+            totalPopulation += cities.population;
+            return totalPopulation;
+        }, 0);
+    });
     return sumPopulation;
 }
 

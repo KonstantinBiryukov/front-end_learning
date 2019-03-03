@@ -30,7 +30,7 @@ var arrayEvenElementsSum = intArray.reduce(function (sum, element) {
         sum += element;
     }
     return sum;
-});
+}, 0);
 console.log("Sum of the even elements: " + arrayEvenElementsSum);
 
 // (2)
