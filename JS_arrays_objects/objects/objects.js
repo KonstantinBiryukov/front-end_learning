@@ -94,10 +94,10 @@ function findCountryWithMaxCitiesQuantity(countriesArray) {
     });
 
     // to compare all countries with max value and add appropriate ones to array
-    countriesArray.forEach(function (countriesArray) {
-        if (countriesArray.cities.length === maxCitiesQuantity) {
-            countriesWithMaxCities.push(countriesArray.name);
-        }
+    countriesArray.filter(function (countriesArray) {
+        return countriesArray.cities.length === maxCitiesQuantity;
+    }).map(function (countriesArray) {
+        countriesWithMaxCities.push(countriesArray.name);
     });
 
     return countriesWithMaxCities;
