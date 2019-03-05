@@ -27,7 +27,7 @@ console.log("Last 5 sorted elements: " + last5Elements);
 
 var arrayEvenElementsSum = intArray.reduce(function (sum, element) {
     if (element % 2 === 0) {
-        sum += element;
+        return sum + element;
     }
     return sum;
 }, 0);

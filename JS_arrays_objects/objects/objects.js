@@ -26,7 +26,8 @@ var russia = {
         {
             name: "Omsk",
             population: 1172070
-        }, {
+        },
+        {
             name: "Perm",
             population: 1051583
         }
@@ -82,7 +83,7 @@ console.log(countriesArray);
 
 // (2)
 function findCountryWithMaxCitiesQuantity(countriesArray) {
-    var countryWithMaxCities = {};
+    var countryWithMaxCities = [];
     var maxCitiesQuantity = 0;
 
     // to find and define a maximum
@@ -92,19 +93,17 @@ function findCountryWithMaxCitiesQuantity(countriesArray) {
         }
     });
 
-    // to compare all countries with max value and add appropriate ones to a new object
+    // to compare all countries with max value and add appropriate ones to array
     countriesArray.forEach(function (countriesArray) {
         if (countriesArray.cities.length === maxCitiesQuantity) {
-            countryWithMaxCities[countriesArray.name] = countriesArray.cities.length;
+            countryWithMaxCities.push(countriesArray.name);
         }
     });
 
-    return Object.keys(countryWithMaxCities);
+    return countryWithMaxCities;
 }
 
-//console.log("Max quantity of cities in " + findCountryWithMaxCitiesQuantity(countriesArray));
-console.log("Max quantity of cities in: ");
-console.log(findCountryWithMaxCitiesQuantity(countriesArray));
+console.log("Max quantity of cities in: " + findCountryWithMaxCitiesQuantity(countriesArray));
 
 // (3)
 function getSumPopulation(countries) {
@@ -112,8 +111,7 @@ function getSumPopulation(countries) {
     countries.forEach(function (countriesArray) {
         var countryName = countriesArray.name;
         sumPopulation[countryName] = countriesArray.cities.reduce(function (totalPopulation, cities) {
-            totalPopulation += cities.population;
-            return totalPopulation;
+            return totalPopulation + cities.population;
         }, 0);
     });
     return sumPopulation;
