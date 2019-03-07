@@ -8,20 +8,25 @@
 </head>
 <body>
 <h1>Temperature Converter</h1>
-<label> Input Celsius degrees:
-    <input class="C" type="text" maxlength="10"> °C
-</label>
-<button>CONVERT Temperature</button>
+<div class="input-block">
+    <label class="input-text"> Input Celsius degrees:
+        <input class="conversion-field" id="celsius" type="text" maxlength="10"> °C
+    </label>
+</div>
+
+<div class="convert-block">
+    <button id="conversion-button">CONVERT Temperature</button>
+</div>
 
 <div class="output-block">
-    <label>
+    <label class="output-text">
         Output Fahrenheit degrees:
-        <input class="F" type="text" disabled> F
+        <input class="conversion-field" id="fahrenheit" type="text" disabled> F
     </label>
     <br/>
-    <label>
+    <label class="output-text">
         Output Kelvin degrees:
-        <input class="K" type="text" disabled> K
+        <input class="conversion-field" id="kelvin" type="text" disabled> K
     </label>
 </div>
 </body>
