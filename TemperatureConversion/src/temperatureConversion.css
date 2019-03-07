@@ -19,11 +19,11 @@ h1 {
     margin-left: 10px;
     margin-bottom: 2px;
     border: 1px solid black;
+    text-align: center;
 }
 
 #conversion-button {
-    display: block;
-    margin: 20px auto;
+    margin: 25px auto;
     width: 150px;
     height: 40px;
     font-size: 12px;
