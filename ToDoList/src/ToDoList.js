@@ -53,7 +53,7 @@ function transformToEditItem(imageEdit, listItem) {
         var inputField = document.createElement("input");
 
         inputField.type = "text";
-        inputField.maxLength = 50;
+        inputField.maxLength = 40;
         inputField.value = textList;
         inputField.style.padding = "1px";
         inputField.style.width = "250px";
