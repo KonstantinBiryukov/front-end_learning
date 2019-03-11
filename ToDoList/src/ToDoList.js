@@ -17,7 +17,7 @@ function addToList() {
         }
         var listItem = document.createElement("li");
 
-        listItem.innerText = inputDataValue;
+        listItem.textContent = inputDataValue;
         unorderedList.appendChild(listItem);
         inputField.value = "";
         addDeleteButton(listItem);
