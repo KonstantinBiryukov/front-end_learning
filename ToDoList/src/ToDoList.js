@@ -28,6 +28,7 @@ function addDeleteButton(listItem) {
     var imgDelete = document.createElement("input");
     imgDelete.type = "image";
     imgDelete.alt = "delete";
+    imgDelete.title = "delete";
     imgDelete.src = "../resources/deleteImage.png";
     imgDelete.style.cssText = "height: 18px; \
                     float: right;\
