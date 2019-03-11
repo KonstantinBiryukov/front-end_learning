@@ -24,12 +24,11 @@ body {
 }
 
 .lists {
-    padding-right: 15px;
-    margin: 25px 25px;
+    padding: 10px 20px 10px 10px;
     overflow: auto;
     height: 500px;
     max-width: 500px;
-    border-right: 1px solid black;
+    border: 1px solid black;
 }
 
 .input-field {

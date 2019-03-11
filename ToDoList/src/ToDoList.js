@@ -20,11 +20,11 @@ function addToList() {
         listItem.innerText = inputDataValue;
         unorderedList.appendChild(listItem);
         inputField.value = "";
-        addDeleteItem(listItem);
+        addDeleteButton(listItem);
     });
 }
 
-function addDeleteItem(listItem) {
+function addDeleteButton(listItem) {
     var imgDelete = document.createElement("input");
     imgDelete.type = "image";
     imgDelete.alt = "delete";
