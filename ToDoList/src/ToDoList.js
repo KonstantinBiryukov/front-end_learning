@@ -43,10 +43,10 @@ function addEditButton(listItem) {
     loadPicture(editImage, "edit", "../resources/editImage.png");
     editImage.style.marginLeft = "15px";
     listItem.appendChild(editImage);
-    addEditItem(editImage, listItem);
+    transformToEditItem(editImage, listItem);
 }
 
-function addEditItem(imageEdit, listItem) {
+function transformToEditItem(imageEdit, listItem) {
     imageEdit.addEventListener("click", function () {
         var textList = listItem.textContent;
         var editableListItem = document.createElement("li");
