@@ -5,6 +5,7 @@
 body {
     background-color: #E5E7E6;
     position: relative;
+    color: #6D6D6D;
 }
 
 table {
@@ -12,10 +13,16 @@ table {
 }
 
 /* header */
+
 header {
     background-color: #FED624;
     max-width: 100%;
+    min-height: 75px;
     font-size: 25px;
+}
+
+th {
+    font-weight: bold;
 }
 
 .small {
@@ -24,19 +31,19 @@ header {
 
 #header thead {
     display: inline-block;
-    margin: 20px 0;
+    margin: 20px;
 }
 
 #header td {
     display: inline-block;
-    margin-left: 38px;
+    margin-left: 78px;
     border-right: 1px solid grey;
     padding: 5px 40px 5px 0;
     color: #836F19;
-    font-family: "Lucida Grande", serif;
+    font-family: "Lucida Grande", sans-serif;
 }
 
-#header a:active {
+#header a:hover {
     text-decoration: underline;
     cursor: pointer;
 }
@@ -55,12 +62,6 @@ header {
     border: none;
 }
 
-.header-wrapper {
-    min-height: 75px;
-    background-color: #FED624;
-    width: 100%;
-}
-
 /* main-block */
 .main-block {
     display: inline-block;
@@ -75,13 +76,14 @@ header {
 }
 
 .main-block td, th {
-    padding: 15px 20px;
+    padding: 15px 55px;
     text-align: center;
-    font-size: 13px;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
 }
 
 .main-block th {
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .main-block td:nth-child(1) {
@@ -118,6 +120,7 @@ input[type="text"] {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     border: 1px solid #628428;
     text-shadow: 0 1px 1px #7DAA30;
+    cursor: pointer;
 }
 
 .buttons-wrapper {
@@ -135,6 +138,22 @@ input[type="text"] {
     background-image: linear-gradient(to bottom, #F7F7F7, #CBCBCB);
     text-shadow: 0 1px 1px #CBCBCB;
     border: 1px solid #AFAFAF;
+}
+
+.green-button:hover {
+    background-image: linear-gradient(to bottom, #7DAA30, #4D9A30);
+}
+
+.green-button:active {
+    background-image: linear-gradient(to bottom, #4D9A30, #1D6A00);
+}
+
+.white-button:hover {
+    background-image: linear-gradient(to bottom, #CBCBCB, #E7E7E7);
+}
+
+.white-button:active {
+    background-image: linear-gradient(to bottom, #E7E7E7, #A7A7A7);
 }
 
 /* requests-header */
@@ -170,22 +189,29 @@ input[type="text"] {
 
 /* requests table */
 .requests {
+    display: inline-block;
     overflow-y: auto;
     max-height: 230px;
-    max-width: 100%;
+    width: 100%;
     margin-top: 20px;
-    display: inline-block;
+    padding-top: 3px;
     font-family: "Fira Code", sans-serif;
 }
 
 .requests td, .requests th {
-    padding: 15px 60px 15px 20px;
+    padding: 15px 140px 15px 20px;
     font-size: 14px;
     text-align: left;
 }
 
 .requests thead {
     background-color: #FED624;
+}
+
+.shadow {
+    background: #BDC6E3;
+    box-shadow: 0 0 20px rgba(189, 199, 250, 0.9);
+    border-radius: 10px;
 }
 
 .requests th {
@@ -195,10 +221,22 @@ input[type="text"] {
 .requests td {
     border-right: 2px dotted white;
     border-top: 2px dotted white;
+    outline: 2px dotted #C0C0C0;
+    outline-offset: 1px;
+}
+
+.requests th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.requests th:last-child {
+    border-top-right-radius: 10px;
+    border-right: none;
 }
 
 .requests td:last-child {
     width: 450px;
+    border-right: none;
 }
 
 .requests tbody tr:first-child td {
@@ -226,6 +264,7 @@ input[type="text"] {
     width: 30px;
 }
 
-.requests tr td:nth-child(1) {
+.requests td:nth-child(1),
+.requests th:nth-child(1) {
     padding-left: 40px;
 }
