@@ -48,3 +48,26 @@ body {
 .create-item {
     position: absolute;
 }
+
+.image-button {
+    height: 18px;
+    width: 18px;
+    float: right;
+    margin-left: 3px;
+}
+
+.edit-input {
+    padding: 1px;
+    width: 250px;
+}
+
+.left-button {
+    margin-left: 15px;
+}
+
+.background-image {
+    height: 18px;
+    width: 18px;
+    margin: -5px -10px;
+    cursor: pointer;
+}

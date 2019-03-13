@@ -5,9 +5,12 @@
 // • * Можно еще сделать рядом кнопку редактирования – по нажатию вместо текста появляется поле ввода с текстом,
 // а вместо кнопки редактирования – появляются кнопки «Отменить» и «Сохранить»
 
-var unorderedList = document.getElementById("notes");
+"use strict";
+
+var unorderedList;
 
 function addToList() {
+    unorderedList = document.getElementById("notes");
     var additionButton = document.getElementById("add-button");
     additionButton.addEventListener("click", function () {
         var inputField = document.getElementById("add-element-field");
@@ -26,7 +29,7 @@ function addToList() {
 }
 
 function addDeleteButton(listItem) {
-    var deleteImage = document.createElement("input");
+    var deleteImage = document.createElement("button");
     loadPicture(deleteImage, "delete", "../resources/deleteImage.png");
     listItem.appendChild(deleteImage);
     deleteItem(deleteImage, listItem);
@@ -39,9 +42,10 @@ function deleteItem(deleteImage, listItem) {
 }
 
 function addEditButton(listItem) {
-    var editImage = document.createElement("input");
+    var editImage = document.createElement("button");
     loadPicture(editImage, "edit", "../resources/editImage.png");
-    editImage.style.marginLeft = "15px";
+
+    editImage.classList.add("left-button");
     listItem.appendChild(editImage);
     transformToEditItem(editImage, listItem);
 }
@@ -52,18 +56,17 @@ function transformToEditItem(imageEdit, listItem) {
         var editableListItem = document.createElement("li");
         var inputField = document.createElement("input");
 
+        inputField.className = "edit-input";
         inputField.type = "text";
         inputField.maxLength = 40;
         inputField.value = textList;
-        inputField.style.padding = "1px";
-        inputField.style.width = "250px";
 
-        var cancelImage = document.createElement("input");
+        var cancelImage = document.createElement("button");
         loadPicture(cancelImage, "cancel", "../resources/cancelImage.png");
 
-        var saveImage = document.createElement("input");
+        var saveImage = document.createElement("button");
         loadPicture(saveImage, "save", "../resources/saveImage.png");
-        saveImage.style.marginLeft = "15px";
+        saveImage.classList.add("left-button");
 
         unorderedList.removeChild(listItem);
         unorderedList.appendChild(editableListItem);
@@ -100,15 +103,14 @@ function returnToInitialListItemState(text) {
     addEditButton(listItem);
 }
 
-function loadPicture(image, name, link) {
-    image.type = "image";
+function loadPicture(imageButton, name, link) {
+    var image = document.createElement("img");
+    imageButton.appendChild(image);
+    imageButton.classList.add("image-button");
+    image.classList.add("background-image");
     image.alt = name;
     image.title = name;
     image.src = link;
-    image.style.cssText = "height: 18px; \
-                    float: right;\
-                    margin-left: 3px;\
-                    ";
 }
 
 document.addEventListener("DOMContentLoaded", addToList);
