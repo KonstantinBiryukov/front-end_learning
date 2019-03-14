@@ -9,8 +9,9 @@
 
 var unorderedList;
 
-function addToList() {
+function initPage() {
     unorderedList = document.getElementById("notes");
+
     var additionButton = document.getElementById("add-button");
     additionButton.addEventListener("click", function () {
         var inputField = document.getElementById("add-element-field");
@@ -113,4 +114,4 @@ function loadPicture(imageButton, name, link) {
     image.src = link;
 }
 
-document.addEventListener("DOMContentLoaded", addToList);
+document.addEventListener("DOMContentLoaded", initPage);
