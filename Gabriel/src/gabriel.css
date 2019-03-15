@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 body {
@@ -35,7 +37,7 @@ header {
     float: left;
     text-align: center;
     border-right: 1px solid grey;
-    padding: 5px 40px 5px 40px;
+    padding: 5px 0;
     color: #836F19;
     font-family: "Lucida Grande", sans-serif;
 }
@@ -47,7 +49,8 @@ header {
     cursor: pointer;
 }
 
-.header-wrapper div:first-child {
+.header-wrapper div:first-child,
+.header-wrapper div:first-child a:hover {
     text-decoration: underline;
     color: #D50A1D;
 }
@@ -62,13 +65,16 @@ header {
 }
 
 /* main-block */
-.main-block {
-    table-layout: fixed;
-    display: inline-block;
+.main-block-container {
     overflow-y: auto;
     max-height: 350px;
     max-width: 100%;
     margin-left: 10px;
+}
+
+.main-block {
+    table-layout: fixed;
+    width: 100%;
 }
 
 .main-block thead {
@@ -76,8 +82,7 @@ header {
 }
 
 .main-block td, th {
-    width: calc(100% / 6);
-    padding: 15px 55px;
+    padding: 15px 0;
     text-align: center;
     font-size: 12px;
     font-family: Arial, sans-serif;
@@ -190,19 +195,22 @@ input[type="text"] {
 }
 
 /* requests table */
-.requests {
-    table-layout: fixed;
-    display: inline-block;
+.requests-container {
     overflow-y: auto;
     min-height: 230px;
     width: 100%;
+}
+
+.requests {
+    table-layout: fixed;
     margin-top: 20px;
     padding-top: 3px;
     font-family: "Fira Code", sans-serif;
+    width: 100%;
+
 }
 
 .requests td, .requests th {
-    width: calc(100% / 5);
     padding: 15px 140px 15px 20px;
     font-size: 14px;
     text-align: left;
@@ -219,12 +227,12 @@ input[type="text"] {
 }
 
 .requests th {
-    border-right: 2px dotted #C8A726;
+    border-right: 1px dotted #C8A726;
 }
 
 .requests td {
-    border-right: 2px dotted white;
-    border-top: 2px dotted white;
+    border-right: 1px dotted white;
+    border-top: 1px dotted white;
     position: relative;
 }
 
@@ -232,16 +240,19 @@ input[type="text"] {
     position: absolute;
     display: block;
     content: '';
-    border: 2px dotted grey;
+    border: 1px dotted grey;
     height: 100%;
     width: 100%;
-    left: -2px;
+    left: -1px;
     top: 0;
 }
 
-.requests tr td:last-child:before,
-.requests tbody tr:last-child td:before {
+.requests tr td:last-child:before {
     border-right: none;
+}
+
+.requests tbody tr:last-child td:before {
+    border-bottom: none;
 }
 
 .requests th:first-child {

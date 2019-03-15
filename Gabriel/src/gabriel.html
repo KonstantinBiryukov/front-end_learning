@@ -7,9 +7,6 @@
     <link rel="stylesheet" type="text/css" href="gabriel.css">
 </head>
 <body>
-
-<!-- float, inline-block или display:table, но не тегом table. -->
-
 <header>
     <div class="header-wrapper">
         <div><a>Gabriel</a></div>
@@ -22,80 +19,82 @@
     </div>
 </header>
 
-<table class="main-block">
-    <thead>
-    <tr>
-        <th>Валидатор</th>
-        <th>Буква</th>
-        <th>Адрес</th>
-        <th>Остаток ET</th>
-        <th>Сколько необходимо еще ET</th>
-        <th>Комментарий</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>421-7176-1</td>
-        <td>A</td>
-        <td>РФ, г.Москва, ул. Усиевича, д.22, корп.1</td>
-        <td>10</td>
-        <td></td>
-        <td><label>
-            <input type="text" placeholder="Какой-то комментарий">
-        </label></td>
-    </tr>
-    <tr>
-        <td>421-7736-1</td>
-        <td>A</td>
-        <td>Moldova, Chisinau, str.Alexandru cel Bun, 98</td>
-        <td>35</td>
-        <td></td>
-        <td><label>
-            <input type="text" placeholder="Какой-то комментарий">
-        </label></td>
-    </tr>
-    <tr>
-        <td>421-3476-1</td>
-        <td></td>
-        <td>...г.Кишинев, бульвар Штефан Чел Марэ, 3</td>
-        <td>50</td>
-        <td></td>
-        <td><label>
-            <input type="text" placeholder="Какой-то комментарий">
-        </label></td>
-    </tr>
-    <tr>
-        <td>421-7176-1</td>
-        <td>А</td>
-        <td>РФ, г.Москва, ул. Усиевича, д.22, корп.1</td>
-        <td>70</td>
-        <td></td>
-        <td><label>
-            <input type="text" placeholder="Какой-то комментарий">
-        </label></td>
-    </tr>
-    <tr>
-        <td>421-7736-1</td>
-        <td>А</td>
-        <td>Moldova, Chisinau, str.Alexandru cel Bun, 98</td>
-        <td>75</td>
-        <td></td>
-        <td><label>
-            <input type="text" placeholder="Какой-то комментарий">
-        </label></td>
-    </tr>
-    <tr>
-        <td>421-3476-1</td>
-        <td>А</td>
-        <td>...г.Кишинев, бульвар Штефан Чел Марэ, 3</td>
-        <td>100</td>
-        <td></td>
-        <td><label>
-            <input type="text" placeholder="Какой-то комментарий">
-        </label></td>
-    </tr>
-    </tbody>
-</table>
+<div class="main-block-container">
+    <table class="main-block">
+        <thead>
+        <tr>
+            <th>Валидатор</th>
+            <th>Буква</th>
+            <th>Адрес</th>
+            <th>Остаток ET</th>
+            <th>Сколько необходимо еще ET</th>
+            <th>Комментарий</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>421-7176-1</td>
+            <td>A</td>
+            <td>РФ, г.Москва, ул. Усиевича, д.22, корп.1</td>
+            <td>10</td>
+            <td></td>
+            <td><label>
+                <input type="text" placeholder="Какой-то комментарий">
+            </label></td>
+        </tr>
+        <tr>
+            <td>421-7736-1</td>
+            <td>A</td>
+            <td>Moldova, Chisinau, str.Alexandru cel Bun, 98</td>
+            <td>35</td>
+            <td></td>
+            <td><label>
+                <input type="text" placeholder="Какой-то комментарий">
+            </label></td>
+        </tr>
+        <tr>
+            <td>421-3476-1</td>
+            <td></td>
+            <td>...г.Кишинев, бульвар Штефан Чел Марэ, 3</td>
+            <td>50</td>
+            <td></td>
+            <td><label>
+                <input type="text" placeholder="Какой-то комментарий">
+            </label></td>
+        </tr>
+        <tr>
+            <td>421-7176-1</td>
+            <td>А</td>
+            <td>РФ, г.Москва, ул. Усиевича, д.22, корп.1</td>
+            <td>70</td>
+            <td></td>
+            <td><label>
+                <input type="text" placeholder="Какой-то комментарий">
+            </label></td>
+        </tr>
+        <tr>
+            <td>421-7736-1</td>
+            <td>А</td>
+            <td>Moldova, Chisinau, str.Alexandru cel Bun, 98</td>
+            <td>75</td>
+            <td></td>
+            <td><label>
+                <input type="text" placeholder="Какой-то комментарий">
+            </label></td>
+        </tr>
+        <tr>
+            <td>421-3476-1</td>
+            <td>А</td>
+            <td>...г.Кишинев, бульвар Штефан Чел Марэ, 3</td>
+            <td>100</td>
+            <td></td>
+            <td><label>
+                <input type="text" placeholder="Какой-то комментарий">
+            </label></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 <div class="buttons-wrapper">
     <input type="button" class="green-button" value="Архив заявок">
@@ -109,59 +108,61 @@
     <input type="image" class="update-image" src="../resources/UpdateImg.png" alt="update" title="Update requests">
 </div>
 
-<table class="requests">
-    <thead class="shadow">
-    <tr>
-        <th>Дата, время заявки</th>
-        <th>Номер заявки</th>
-        <th>Статус</th>
-        <th>Система бронирования</th>
-        <th>Заказано</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>21.12.2012, 08:04</td>
-        <td>32512192E75B</td>
-        <td>На рассмотрении</td>
-        <td>Gabriel</td>
-        <td>400
-            <input type="image" class="delete-image" src="../resources/deleteImg.png" alt="delete"
-                   title="Delete request">
-        </td>
-    </tr>
-    <tr>
-        <td>18.12.2012, 10:04</td>
-        <td>32512122E75B</td>
-        <td>На рассмотрении</td>
-        <td>Amadeus</td>
-        <td>350
-            <input type="image" class="delete-image" src="../resources/deleteImg.png" alt="delete"
-                   title="Delete request">
-        </td>
-    </tr>
-    <tr>
-        <td>13.12.2012, 08:23</td>
-        <td>32522192E75B</td>
-        <td>Рассмотрена</td>
-        <td>Gabriel</td>
-        <td>200</td>
-    </tr>
-    <tr>
-        <td>13.12.2012, 08:23</td>
-        <td>32522192E75B</td>
-        <td>Рассмотрена</td>
-        <td>Gabriel</td>
-        <td>200</td>
-    </tr>
-    <tr>
-        <td>13.12.2012, 08:23</td>
-        <td>32522192E75B</td>
-        <td>Рассмотрена</td>
-        <td>Gabriel</td>
-        <td>200</td>
-    </tr>
-    </tbody>
-</table>
+<div class="requests-container">
+    <table class="requests">
+        <thead class="shadow">
+        <tr>
+            <th>Дата, время заявки</th>
+            <th>Номер заявки</th>
+            <th>Статус</th>
+            <th>Система бронирования</th>
+            <th>Заказано</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>21.12.2012, 08:04</td>
+            <td>32512192E75B</td>
+            <td>На рассмотрении</td>
+            <td>Gabriel</td>
+            <td>400
+                <input type="image" class="delete-image" src="../resources/deleteImg.png" alt="delete"
+                       title="Delete request">
+            </td>
+        </tr>
+        <tr>
+            <td>18.12.2012, 10:04</td>
+            <td>32512122E75B</td>
+            <td>На рассмотрении</td>
+            <td>Amadeus</td>
+            <td>350
+                <input type="image" class="delete-image" src="../resources/deleteImg.png" alt="delete"
+                       title="Delete request">
+            </td>
+        </tr>
+        <tr>
+            <td>13.12.2012, 08:23</td>
+            <td>32522192E75B</td>
+            <td>Рассмотрена</td>
+            <td>Gabriel</td>
+            <td>200</td>
+        </tr>
+        <tr>
+            <td>13.12.2012, 08:23</td>
+            <td>32522192E75B</td>
+            <td>Рассмотрена</td>
+            <td>Gabriel</td>
+            <td>200</td>
+        </tr>
+        <tr>
+            <td>13.12.2012, 08:23</td>
+            <td>32522192E75B</td>
+            <td>Рассмотрена</td>
+            <td>Gabriel</td>
+            <td>200</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
