@@ -7,21 +7,18 @@
     <link rel="stylesheet" type="text/css" href="gabriel.css">
 </head>
 <body>
+
+<!-- float, inline-block или display:table, но не тегом table. -->
+
 <header>
     <div class="header-wrapper">
-        <table id="header">
-            <thead>
-            <tr>
-                <td><a>Gabriel</a></td>
-                <td><a>Gabriel <span class="small">блоки</span></a></td>
-                <td><a>Сирена</a></td>
-                <td><a>Amadeus</a></td>
-                <td>Sabre</td>
-                <td>Galileo</td>
-                <td><a>Бумажные</a></td>
-            </tr>
-            </thead>
-        </table>
+        <div><a>Gabriel</a></div>
+        <div><a>Gabriel <span class="small">блоки</span></a></div>
+        <div><a>Сирена</a></div>
+        <div><a>Amadeus</a></div>
+        <div>Sabre</div>
+        <div>Galileo</div>
+        <div><a>Бумажные</a></div>
     </div>
 </header>
 
@@ -109,7 +106,7 @@
 <div class="requests-wrapper">
     <span class="previous-requests">Предыдущие заявки</span>
     <span class="update-date">Обновлено 13.11.2012, 15:45</span>
-    <input type="image" class="update-image" src="../resources/UpdateImg.png" alt="update" title="update requests">
+    <input type="image" class="update-image" src="../resources/UpdateImg.png" alt="update" title="Update requests">
 </div>
 
 <table class="requests">
@@ -130,7 +127,7 @@
         <td>Gabriel</td>
         <td>400
             <input type="image" class="delete-image" src="../resources/deleteImg.png" alt="delete"
-                   title="delete request">
+                   title="Delete request">
         </td>
     </tr>
     <tr>
@@ -140,7 +137,7 @@
         <td>Amadeus</td>
         <td>350
             <input type="image" class="delete-image" src="../resources/deleteImg.png" alt="delete"
-                   title="delete request">
+                   title="Delete request">
         </td>
     </tr>
     <tr>

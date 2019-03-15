@@ -13,57 +13,57 @@ table {
 }
 
 /* header */
-
 header {
     background-color: #FED624;
-    max-width: 100%;
     min-height: 75px;
     font-size: 25px;
-}
-
-th {
-    font-weight: bold;
 }
 
 .small {
     font-size: 15px;
 }
 
-#header thead {
+.header-wrapper {
+    min-width: 100%;
     display: inline-block;
-    margin: 20px;
+    margin: 20px 0;
 }
 
-#header td {
+.header-wrapper div {
     display: inline-block;
-    margin-left: 78px;
+    width: calc(100% / 7);
+    float: left;
+    text-align: center;
     border-right: 1px solid grey;
-    padding: 5px 40px 5px 0;
+    padding: 5px 40px 5px 40px;
     color: #836F19;
     font-family: "Lucida Grande", sans-serif;
 }
 
-#header a:hover {
-    text-decoration: underline;
+.header-wrapper a:hover {
+    border-bottom: 2px solid #836F19;
+    display: inline-block;
+    line-height: 0.9;
     cursor: pointer;
 }
 
-#header td:first-child {
+.header-wrapper div:first-child {
     text-decoration: underline;
     color: #D50A1D;
 }
 
-#header td:nth-child(5),
-#header td:nth-child(6) {
+.header-wrapper div:nth-child(5),
+.header-wrapper div:nth-child(6) {
     color: #D3B12C;
 }
 
-#header td:last-child {
+.header-wrapper div:last-child {
     border: none;
 }
 
 /* main-block */
 .main-block {
+    table-layout: fixed;
     display: inline-block;
     overflow-y: auto;
     max-height: 350px;
@@ -76,6 +76,7 @@ th {
 }
 
 .main-block td, th {
+    width: calc(100% / 6);
     padding: 15px 55px;
     text-align: center;
     font-size: 12px;
@@ -90,7 +91,8 @@ th {
     font-size: 18px;
 }
 
-.main-block thead th:nth-child(3n) {
+.main-block thead th:nth-child(3n),
+.main-block td:nth-child(3n) {
     text-align: left;
 }
 
@@ -189,9 +191,10 @@ input[type="text"] {
 
 /* requests table */
 .requests {
+    table-layout: fixed;
     display: inline-block;
     overflow-y: auto;
-    max-height: 230px;
+    min-height: 230px;
     width: 100%;
     margin-top: 20px;
     padding-top: 3px;
@@ -199,6 +202,7 @@ input[type="text"] {
 }
 
 .requests td, .requests th {
+    width: calc(100% / 5);
     padding: 15px 140px 15px 20px;
     font-size: 14px;
     text-align: left;
@@ -221,8 +225,23 @@ input[type="text"] {
 .requests td {
     border-right: 2px dotted white;
     border-top: 2px dotted white;
-    outline: 2px dotted #C0C0C0;
-    outline-offset: 1px;
+    position: relative;
+}
+
+.requests td:before {
+    position: absolute;
+    display: block;
+    content: '';
+    border: 2px dotted grey;
+    height: 100%;
+    width: 100%;
+    left: -2px;
+    top: 0;
+}
+
+.requests tr td:last-child:before,
+.requests tbody tr:last-child td:before {
+    border-right: none;
 }
 
 .requests th:first-child {
