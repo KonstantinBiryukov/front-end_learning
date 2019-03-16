@@ -231,10 +231,14 @@ input[type="text"] {
 }
 
 .requests td {
-    border-right: 1px dotted white;
-    border-left: 1px dotted grey;
+    border-right: 1px dotted grey;
     border-top: 1px dotted white;
     border-bottom: 1px dotted grey;
+}
+
+.requests tbody tr:nth-child(1) td,
+.requests tbody tr:nth-child(2) td {
+    border-right: 1px dotted white;
 }
 
 .requests td:first-child {
