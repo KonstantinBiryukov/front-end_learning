@@ -207,7 +207,7 @@ input[type="text"] {
     padding-top: 3px;
     font-family: "Fira Code", sans-serif;
     width: 100%;
-
+    border-collapse: separate;
 }
 
 .requests td, .requests th {
@@ -232,26 +232,17 @@ input[type="text"] {
 
 .requests td {
     border-right: 1px dotted white;
+    border-left: 1px dotted grey;
     border-top: 1px dotted white;
-    position: relative;
+    border-bottom: 1px dotted grey;
 }
 
-.requests td:before {
-    position: absolute;
-    display: block;
-    content: '';
-    border: 1px dotted grey;
-    height: 100%;
-    width: 100%;
-    left: -1px;
-    top: 0;
+
+.requests td:first-child {
+    border-left: none;
 }
 
-.requests tr td:last-child:before {
-    border-right: none;
-}
-
-.requests tbody tr:last-child td:before {
+.requests tbody tr:last-child td {
     border-bottom: none;
 }
 
