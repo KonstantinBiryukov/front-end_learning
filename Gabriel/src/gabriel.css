@@ -44,15 +44,16 @@ header {
 
 .header-wrapper a:hover {
     border-bottom: 2px solid #836F19;
-    display: inline-block;
-    line-height: 0.9;
+    line-height: 1;
     cursor: pointer;
 }
 
-.header-wrapper div:first-child,
-.header-wrapper div:first-child a:hover {
-    text-decoration: underline;
+.header-wrapper div:first-child {
     color: #D50A1D;
+}
+
+.header-wrapper div:first-child a {
+    border-bottom: 2px solid #D50A1D;
 }
 
 .header-wrapper div:nth-child(5),
