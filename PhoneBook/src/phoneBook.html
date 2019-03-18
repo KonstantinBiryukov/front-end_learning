@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phone Book</title>
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link rel="stylesheet" type="text/css" href="phoneBook.css">
+</head>
+<body>
+<div class="table-wrapper">
+    <h1 class="title">Phone Book</h1>
+    <table class="phone-book">
+        <thead>
+        <tr>
+            <th>№</th>
+            <th>Surname</th>
+            <th>Name</th>
+            <th>Phone number</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<div class="input-form-wrapper">
+    <h2 class="add-contact-title">Add contact to phone book</h2>
+    <label>Surname:
+        <input type="text" id="surname" title="Surname" maxlength="30">
+    </label>
+    <label>Name:
+        <input type="text" id="name" title="Name" maxlength="30">
+    </label>
+    <label>Phone number:
+        <input type="text" id="phone-number" title="Phone number" maxlength="10">
+    </label>
+    <button class="add-button" id="add-contact-button">Add to phone book</button>
+</div>
+<script type="text/javascript" src="jquery-3.3.1.js"></script>
+<script type="text/javascript" src="phoneBook.js"></script>
+</body>
+</html>
