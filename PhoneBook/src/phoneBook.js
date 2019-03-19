@@ -30,16 +30,17 @@ function initPage() {
         if ($(".warning-message").length !== 0) {
             return;
         }
-
         // add a contact number (increment) as a first element of a table row
         contactData.unshift(++contactNumber);
 
         // create a row and fill it with cells
-        var tableRow = $("<tr></tr>");
-        $(tableRow).appendTo(".phone-book tbody");
+        var tableRow = $("<tr></tr>")
+            .appendTo(".phone-book tbody");
 
         var tableCellsArray = [];
-        for (var i = 0; i < 5; i++) {
+
+        // a reason of "contactData.length + 1" --> for empty column with delete buttons
+        for (var i = 0; i < contactData.length + 1; i++) {
             tableCellsArray.push($("<td></td>"));
             tableCellsArray[i].appendTo(tableRow);
         }
@@ -121,30 +122,9 @@ function validateForm(formFields) {
         this.parent().append(warning);
     });
 
-    validatePhoneNumber();
-    validateUniqueInput(formFields);
-}
-
-// compare current input fields with each of the current contacts in corresponding categories
-function validateUniqueInput(formFields) {
-
-    // loop with 3 iterations: on each inputField
-    $.each(formFields, function (index, field) {
-        var currentField = $(this).val();
-
-        // on each iteration: choose columns #2, #3, #4;
-        var columnNumber = $(".phone-book tbody tr td:nth-child(n+2):nth-child(-n+4)");
-
-        // in each column: search for table's text that are equal to corresponding input values
-        columnNumber.each(function () {
-            if ($(this).text() === currentField) {
-                var warning = $("<div></div>")
-                    .addClass("warning-message")
-                    .text(field.attr("title") + " is already added...");
-                field.parent().append(warning);
-            }
-        });
-    });
+    var phoneNumber = $("#phone-number");
+    validateNumericPhoneNumber(phoneNumber);
+    validateUniquePhoneNumber(phoneNumber);
 }
 
 function clearWarningMessages() {
@@ -158,8 +138,7 @@ function clearWarningMessages() {
     });
 }
 
-function validatePhoneNumber() {
-    var phoneNumber = $("#phone-number");
+function validateNumericPhoneNumber(phoneNumber) {
     if (!$.isNumeric(phoneNumber.val()) && phoneNumber.val() !== "") {
         var warning = $("<div></div>")
             .addClass("warning-message")
@@ -171,4 +150,19 @@ function validatePhoneNumber() {
         $(".input-form-wrapper").addClass("invalid-form");
         $(".add-contact-title").addClass("message-invalid");
     }
+}
+
+function validateUniquePhoneNumber(phoneNumber) {
+    // choose columns #4 in the phone book: phoneNumber column
+    var columnNumber = $(".phone-book tbody tr td:nth-child(4)");
+
+    // in each column: search for table's phone number that are equal to phone number in input field
+    columnNumber.each(function () {
+        if ($(this).text() === phoneNumber.val()) {
+            var warning = $("<div></div>")
+                .addClass("warning-message")
+                .text(phoneNumber.attr("title") + " is already added...");
+            phoneNumber.parent().append(warning);
+        }
+    });
 }
