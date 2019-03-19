@@ -6,7 +6,6 @@ $(function () {
 });
 
 var contactNumber = 0;
-var isLastElementDeleted = false;
 
 function getData() {
     var surnameField = $("#surname");
@@ -16,11 +15,11 @@ function getData() {
     var surnameText = surnameField.val();
     var nameText = nameField.val();
     var phoneNumberText = phoneNumberField.val();
-    var formAllText = [surnameField, nameField, phoneNumberField];
+    var formFields = [surnameField, nameField, phoneNumberField];
 
-    validateForm(formAllText);
+    validateForm(formFields);
 
-    clearInputFields(formAllText);
+    clearInputFields(formFields);
     return [surnameText, nameText, phoneNumberText];
 }
 
@@ -31,7 +30,9 @@ function initPage() {
         if ($(".warning-message").length !== 0) {
             return;
         }
-        addContactNumber(contactData);
+
+        // add a contact number (increment) as a first element of a table row
+        contactData.unshift(++contactNumber);
 
         // create a row and fill it with cells
         var tableRow = $("<tr></tr>");
@@ -50,21 +51,6 @@ function initPage() {
             value.text(contactData[index]);
         });
     });
-}
-
-// add a contact number as a first element of a table row
-function addContactNumber(contactData) {
-    contactData.unshift(++contactNumber);
-    isLastElementDeleted = false;
-
-
-    // if (isLastElementDeleted) {
-    //     contactNumber = contactNumber + 2;
-    //     contactData.unshift(contactNumber);
-    //     isLastElementDeleted = false;
-    // } else {
-    //     contactData.unshift(++contactNumber);
-    // }
 }
 
 function clearInputFields(inputFields) {
@@ -91,8 +77,6 @@ function deleteContact(tableRow, deleteButton) {
 }
 
 function recalculateContactNumber(rowNumber, numberContactCell) {
-    isLastElementDeleted = true;
-
     numberContactCell.each(function (rowIndex) {
         contactNumber = rowIndex; // last table row's index
         if (Number($(this).text()) <= Number(rowNumber)) {
@@ -111,19 +95,19 @@ function loadPicture(imageButton, name, link) {
         .appendTo(imageButton);
 }
 
-function validateForm(formAllText) {
+function validateForm(formFields) {
     // for toggling input fields from blue to red
-    $.each(formAllText, function () {
+    $.each(formFields, function () {
         $(this).toggleClass("invalid-input", $(this).val() === "");
     });
 
     // to define empty fields
-    var emptyInputFields = $.grep(formAllText, function (input) {
+    var emptyInputFields = $.grep(formFields, function (input) {
         return $(input).is(".invalid-input");
     });
 
     // for toggling a general view of input form from blue to red
-    $.each(formAllText, function () {
+    $.each(formFields, function () {
         $(".input-form-wrapper")
             .toggleClass("invalid-form", emptyInputFields.length !== 0);
         $(".add-contact-title").toggleClass("message-invalid", emptyInputFields.length !== 0);
@@ -138,13 +122,29 @@ function validateForm(formAllText) {
     });
 
     validatePhoneNumber();
-    validateUniqueInput(formAllText);
+    validateUniqueInput(formFields);
 }
 
-function validateUniqueInput(formAllText) {
-    $.each(formAllText, function (index, value) {
+// compare current input fields with each of the current contacts in corresponding categories
+function validateUniqueInput(formFields) {
 
-    })
+    // loop with 3 iterations: on each inputField
+    $.each(formFields, function (index, field) {
+        var currentField = $(this).val();
+
+        // on each iteration: choose columns #2, #3, #4;
+        var columnNumber = $(".phone-book tbody tr td:nth-child(n+2):nth-child(-n+4)");
+
+        // in each column: search for table's text that are equal to corresponding input values
+        columnNumber.each(function () {
+            if ($(this).text() === currentField) {
+                var warning = $("<div></div>")
+                    .addClass("warning-message")
+                    .text(field.attr("title") + " is already added...");
+                field.parent().append(warning);
+            }
+        });
+    });
 }
 
 function clearWarningMessages() {
