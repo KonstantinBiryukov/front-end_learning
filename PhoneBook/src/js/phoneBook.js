@@ -66,7 +66,7 @@ function initPage() {
         addCheckboxChecker();
         deleteCheckedContacts(tableRow, deleteButtonCell);
 
-        filter();
+        filterContacts();
     });
 }
 
@@ -97,8 +97,8 @@ function addCheckboxChecker() {
 function deleteCheckedContacts() {
     $(".delete-all-button").click(function () {
         var checkedContacts = $(".phone-book tbody input:checked").parent().parent(); // table rows of all checked elements
-
-        // loop for all checked contacts and delete corresponding table rows.
+        console.log(this);
+        // loop through all checked contacts and delete corresponding table rows.
         checkedContacts.each(function () {
             var allContactNumbers = $(".phone-book tbody tr td:nth-child(2)");
             var rowCurrentNumber = $(this).find("td:nth-child(2)").text();
@@ -260,16 +260,19 @@ function toggleFormStyleFromBlueToRed(phoneNumber) {
     $(".add-contact-title").addClass("message-invalid");
 }
 
-function filter() {
+function filterContacts() {
     $(".search-button").click(function () {
         var searchingValue = $("#contacts-search").val().toLowerCase();
-        var contactInfoRow = $(".phone-book tbody tr td:nth-child(n+3):nth-child(-n+5)");
-        var allTextFields = contactInfoRow.text().toLowerCase();
+        var contacts = $(".phone-book tbody tr");
 
-        contactInfoRow.parent().toggle(allTextFields.indexOf(searchingValue) !== -1);
-    });
+        $(contacts).each(function () {
+            var contactsInfoRow = $(this).find("td:nth-child(n+3):nth-child(-n+5)");
+            var contactsText = contactsInfoRow.text().toLowerCase();
+            $(this).toggle(contactsText.indexOf(searchingValue) !== -1);
+        });
 
-    $(".reset-button").click(function () {
-        $(".phone-book tbody tr").show();
+        $(".reset-button").click(function () {
+            $(".phone-book tbody tr").show();
+        });
     });
 }
