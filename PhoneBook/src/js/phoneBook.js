@@ -65,18 +65,18 @@ function initPage() {
         addCheckbox(tableCellsArray[0]);
         addCheckboxChecker();
         deleteCheckedContacts(tableRow, deleteButtonCell);
+
         filter();
     });
 }
 
 // add checkbox to the first column of a table row
 function addCheckbox(firstColumn) {
-    var checkbox = $("<input>")
+    $("<input>")
         .attr("type", "checkbox")
         .attr("name", "contact")
         .attr("value", contactNumber)
         .appendTo(firstColumn);
-    // checkbox.wrap("<label class='checkbox-wrapper'></label>");
 }
 
 function addCheckboxChecker() {
@@ -84,11 +84,11 @@ function addCheckboxChecker() {
     var allCheckboxes = $(".phone-book tbody input");
 
     checker.click(function () {
-        if (allCheckboxes.is(":visible")) { // to make sure that hidden rows are not accidentally checked and delete
+        if (allCheckboxes.is(":visible")) { // to make sure that hidden contacts (filtered) are not accidentally checked and deleted
             if ($(this).is(":checked")) {
-                allCheckboxes.attr("checked", true);
+                allCheckboxes.prop("checked", true);
             } else {
-                allCheckboxes.attr("checked", false);
+                allCheckboxes.prop("checked", false);
             }
         }
     });
@@ -102,11 +102,11 @@ function deleteCheckedContacts() {
         checkedContacts.each(function () {
             var allContactNumbers = $(".phone-book tbody tr td:nth-child(2)");
             var rowCurrentNumber = $(this).find("td:nth-child(2)").text();
+
             this.remove();
             recalculateContactNumber(rowCurrentNumber, allContactNumbers);
             $(".phone-book thead input").prop("checked", false); // reset checkbox checker in thead
         });
-
     })
 }
 
