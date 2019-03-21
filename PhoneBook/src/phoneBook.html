@@ -3,15 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Phone Book</title>
-    <link rel="stylesheet" type="text/css" href="reset.css">
-    <link rel="stylesheet" type="text/css" href="phoneBook.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../libs/jquery-ui-1.12.1.custom/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/phoneBook.css">
 </head>
 <body>
 <div class="table-wrapper">
     <h1 class="title">Phone Book</h1>
+
+    <div class="filter-wrapper">
+        <label class="search">Search:
+            <input type="text" id="contacts-search" title="Search contact" maxlength="25">
+        </label>
+        <button class="search-button">Search</button>
+        <button class="reset-button">Reset</button>
+    </div>
+
     <table class="phone-book">
         <thead>
         <tr>
+            <th>
+                <label class="checkbox-wrapper">
+                    <input type="checkbox" name="checkboxes" value="all">
+                </label>
+            </th>
             <th>№</th>
             <th>Surname</th>
             <th>Name</th>
@@ -24,20 +39,34 @@
     </table>
 </div>
 
-<div class="input-form-wrapper">
-    <h2 class="add-contact-title">Add contact to phone book</h2>
-    <label>Surname:
-        <input type="text" id="surname" title="Surname" maxlength="30">
-    </label>
-    <label>Name:
-        <input type="text" id="name" title="Name" maxlength="30">
-    </label>
-    <label>Phone number:
-        <input type="text" id="phone-number" title="Phone number" maxlength="10">
-    </label>
-    <button class="add-button" id="add-contact-button">Add to phone book</button>
+<div class="main-interface-wrapper">
+    <div class="input-form-wrapper">
+        <h2 class="add-contact-title">Add contact to phone book</h2>
+        <label>Surname:
+            <input type="text" id="surname" title="Surname" maxlength="25">
+        </label>
+        <label>Name:
+            <input type="text" id="name" title="Name" maxlength="20">
+        </label>
+        <label>Phone number:
+            <input type="text" id="phone-number" title="Phone number" maxlength="10">
+        </label>
+        <button class="add-button" id="add-contact-button">Add to phone book</button>
+    </div>
+    <br>
+    <div class="delete-all-button-wrapper">
+        <img class="delete-all-image" src="../resources/deleteSign.png" alt="delete all checked contacts"
+             title="Delete all checked contacts">
+        <button class="delete-all-button" title="Delete all checked contacts">
+            Delete all checked contacts
+            <!--<img class="delete-all-checked-buttons" src="../resources/deleteAllImage.png" alt="delete all checked contacts"-->
+            <!--title="Delete all checked contacts">-->
+        </button>
+    </div>
 </div>
-<script type="text/javascript" src="jquery-3.3.1.js"></script>
-<script type="text/javascript" src="phoneBook.js"></script>
+
+<script type="text/javascript" src="../libs/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../libs/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script type="text/javascript" src="js/phoneBook.js"></script>
 </body>
 </html>

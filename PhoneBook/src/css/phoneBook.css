@@ -1,0 +1,221 @@
+* {
+    box-sizing: border-box;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 35px;
+    margin: 30px;
+    text-decoration: underline;
+}
+
+/* contacts' filter */
+.filter-wrapper {
+    font-weight: bold;
+    padding-left: 50px;
+    padding-bottom: 15px;
+}
+
+/* contacts table */
+.phone-book {
+    margin-left: 30px;
+    max-height: 200px;
+    width: 780px;
+    overflow-y: auto;
+    float: left;
+    margin-bottom: 20px; /*for browser's stretching*/
+}
+
+.phone-book thead {
+    background-color: bisque;
+}
+
+.phone-book th,
+.phone-book td {
+    border: 1px solid black;
+    padding: 5px 15px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.phone-book th {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.phone-book th:first-child,
+.phone-book th:last-child,
+.phone-book th:nth-child(2),
+.phone-book td:first-child,
+.phone-book td:last-child,
+.phone-book td:nth-child(2) {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* input form */
+.main-interface-wrapper {
+    float: left;
+    height: 500px;
+    max-width: 500px;
+    margin-left: 80px;
+}
+
+.input-form-wrapper {
+    border: 2px dashed darkblue;
+    box-shadow: 0 0 20px rgba(0, 0, 50, 0.5);
+}
+
+.add-contact-title {
+    border-bottom: 2px dashed darkblue;
+    padding: 15px;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(0, 0, 255, 0.1);
+}
+
+.input-form-wrapper label {
+    display: block;
+    margin: 15px;
+}
+
+input[type="text"] {
+    padding: 3px 5px;
+    border: 1px solid cornflowerblue;
+}
+
+/* general buttons' styles */
+.input-form-wrapper .add-button,
+.search-button,
+.reset-button {
+    cursor: pointer;
+    padding: 7px;
+    border-radius: 7px;
+    background-image: linear-gradient(to bottom, white, lightgrey);
+    font-weight: bold;
+    margin-left: 10px;
+    outline: 0;
+}
+
+.search-button {
+    border: 2px steelblue solid;
+    width: 60px;
+}
+
+.reset-button {
+    border: 2px orangered solid;
+    width: 60px;
+}
+
+.input-form-wrapper .add-button {
+    display: block;
+    margin: 15px auto;
+}
+
+.input-form-wrapper .add-button:hover,
+.search-button:hover {
+    background-image: linear-gradient(to bottom, aliceblue, skyblue);
+}
+
+.input-form-wrapper .add-button:active,
+.search-button:active {
+    background-image: linear-gradient(to bottom, deepskyblue, dodgerblue);
+}
+
+.reset-button:hover {
+    background: pink;
+}
+
+/* dynamic items */
+.background-image {
+    height: 20px;
+    width: 20px;
+    margin: -5px -10px;
+    cursor: pointer;
+}
+
+.invalid-form {
+    border: 2px dashed darkred;
+    box-shadow: 0 0 20px rgba(250, 0, 0, 0.5);
+}
+
+input[type="text"].invalid-input {
+    border: 1px solid red;
+    box-shadow: 0 0 10px rgba(250, 0, 0, 0.5);
+}
+
+.message-invalid {
+    background-color: rgba(200, 0, 0, 0.5);
+    border-bottom: 2px dashed darkred;
+}
+
+.warning-message {
+    font-size: 14px;
+    text-align: center;
+    padding-top: 5px;
+    color: darkred;
+}
+
+/* body of delete confirmation dialog */
+.ui-dialog-content {
+    display: block;
+    color: red;
+    margin: 20px 40px;
+    min-height: 50px;
+}
+
+.ui-dialog-title {
+    text-align: center;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    float: none;
+    text-align: center;
+}
+
+.ui-dialog-buttonset button:nth-child(2):active,
+.reset-button:active {
+    background: palevioletred;
+}
+
+/* delete-all-checked-contact button */
+.delete-all-button-wrapper {
+    width: 170px;
+    height: 40px;
+    margin: 10px auto;
+}
+
+.delete-all-button {
+    display: inline-block;
+    width: 130px;
+    height: 100%;
+    background-color: rgba(240, 10, 10, 0.6);
+    cursor: pointer;
+    border: 1px black solid;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.delete-all-image {
+    display: inline-block;
+    float: left;
+    width: 40px;
+    height: 100%;
+    background-color: black;
+}
+
+.delete-all-button:hover {
+    background-color: rgba(200, 0, 0, 0.5);
+}
+
+.delete-all-button:active {
+    background-color: rgba(200, 0, 0, 0.8);
+}
+
+.checkbox-wrapper {
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}
