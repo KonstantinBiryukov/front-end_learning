@@ -129,12 +129,12 @@ function createDeleteButton(tableRow, tableCell) {
 
 function deleteContact(tableRow, deleteButton, tableCell) {
     var rowNumber = tableRow.find("td:nth-child(2)").text();
-    var numberContactCell = $(".phone-book tbody tr td:nth-child(2)");
+    var allContactNumbers = $(".phone-book tbody tr td:nth-child(2)");
 
-    initDeleteConfirmDialog(tableRow, tableCell, rowNumber, numberContactCell);
+    initDeleteConfirmDialog(tableRow, tableCell, rowNumber, allContactNumbers);
 }
 
-function initDeleteConfirmDialog(tableRow, tableCell, rowNumber, numberContactCell) {
+function initDeleteConfirmDialog(tableRow, tableCell, rowNumber, allContactNumbers) {
     var confirmationElement = $("<span></span>")
         .text("Would you like to delete this contact ?" + " (contact number: #" + rowNumber + ")")
         .appendTo(tableCell);
@@ -157,7 +157,7 @@ function initDeleteConfirmDialog(tableRow, tableCell, rowNumber, numberContactCe
                 click: function () {
                     tableRow.remove();
                     $(this).dialog("close");
-                    recalculateContactNumber(rowNumber, numberContactCell);
+                    recalculateContactNumber(rowNumber, allContactNumbers);
                 }
             }
         ]
@@ -165,9 +165,9 @@ function initDeleteConfirmDialog(tableRow, tableCell, rowNumber, numberContactCe
 }
 
 function recalculateContactNumber(rowNumber, allContactNumbers) {
-    // contactNumber = rowNumber; // last table row's index
-    allContactNumbers.each(function (rowIndex) {
-        contactNumber = rowIndex; // last table row's index
+    contactNumber = allContactNumbers.length - 1; // last table row's index
+
+    allContactNumbers.each(function () {
         if (Number($(this).text()) <= Number(rowNumber)) {
             return;
         }
