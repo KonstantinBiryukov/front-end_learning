@@ -84,10 +84,12 @@ function addCheckboxChecker() {
     var allCheckboxes = $(".phone-book tbody input");
 
     checker.click(function () {
-        if ($(this).is(":checked")) {
-            allCheckboxes.attr("checked", true);
-        } else {
-            allCheckboxes.attr("checked", false);
+        if (allCheckboxes.is(":visible")) { // to make sure that hidden rows are not accidentally checked and delete
+            if ($(this).is(":checked")) {
+                allCheckboxes.attr("checked", true);
+            } else {
+                allCheckboxes.attr("checked", false);
+            }
         }
     });
 }
@@ -104,6 +106,7 @@ function deleteCheckedContacts() {
             recalculateContactNumber(rowCurrentNumber, allContactNumbers);
             $(".phone-book thead input").prop("checked", false); // reset checkbox checker in thead
         });
+
     })
 }
 
