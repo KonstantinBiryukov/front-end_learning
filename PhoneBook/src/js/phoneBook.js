@@ -97,7 +97,7 @@ function addCheckboxChecker() {
 function deleteCheckedContacts() {
     $(".delete-all-button").click(function () {
         var checkedContacts = $(".phone-book tbody input:checked").parent().parent(); // table rows of all checked elements
-        console.log(this);
+
         // loop through all checked contacts and delete corresponding table rows.
         checkedContacts.each(function () {
             var allContactNumbers = $(".phone-book tbody tr td:nth-child(2)");
