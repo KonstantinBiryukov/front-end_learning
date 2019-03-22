@@ -14,14 +14,14 @@ function getData() {
     var formFields = [surnameField, nameField, phoneNumberField];
 
     validateForm(formFields);
-
     return formFields;
 }
 
 function initPage() {
-    $("#add-contact-button").click(function () {
+    filterContacts();
 
-        clearWarningMessages();
+    $("#add-contact-button").click(function () {
+        clearWarningMessages("warning-message");
 
         var formFields = getData();
         var contactData = [];
@@ -64,10 +64,8 @@ function initPage() {
 
         addCheckbox(tableCellsArray[0]);
         addCheckboxChecker();
-        deleteCheckedContacts(tableRow, deleteButtonCell);
-
-        filterContacts();
     });
+    deleteCheckedContacts();
 }
 
 // add checkbox to the first column of a table row
@@ -85,11 +83,7 @@ function addCheckboxChecker() {
 
     checker.click(function () {
         if (allCheckboxes.is(":visible")) { // to make sure that hidden contacts (filtered) are not accidentally checked and deleted
-            if ($(this).is(":checked")) {
-                allCheckboxes.prop("checked", true);
-            } else {
-                allCheckboxes.prop("checked", false);
-            }
+            allCheckboxes.prop("checked", $(this).is(":checked"));
         }
     });
 }
@@ -98,16 +92,53 @@ function deleteCheckedContacts() {
     $(".delete-all-button").click(function () {
         var checkedContacts = $(".phone-book tbody input:checked").parent().parent(); // table rows of all checked elements
 
-        // loop through all checked contacts and delete corresponding table rows.
-        checkedContacts.each(function () {
-            var allContactNumbers = $(".phone-book tbody tr td:nth-child(2)");
-            var rowCurrentNumber = $(this).find("td:nth-child(2)").text();
+        var confirmationElement = $("<span></span>")
+            .text("Would you like to delete ALL checked contacts ?")
+            .appendTo(".delete-all-button");
 
-            this.remove();
-            recalculateContactNumber(rowCurrentNumber, allContactNumbers);
-            $(".phone-book thead input").prop("checked", false); // reset checkbox checker in thead
-        });
-    })
+        if (checkedContacts.length === 0) {
+            confirmationElement.text("There're no checked elements!");
+            confirmationElement.dialog({
+                modal: true,
+                title: "Delete confirmation",
+                minHeight: 100,
+                minWidth: 350
+            });
+        } else {
+            confirmationElement.dialog({
+                modal: true,
+                title: "Delete confirmation",
+                minHeight: 220,
+                minWidth: 370,
+                buttons: [
+                    {
+                        text: "NO",
+                        click: function () {
+                            $(this).dialog("close");
+                            confirmationElement.remove();
+                            resetCheckboxes();
+                        }
+                    },
+                    {
+                        text: "YES",
+                        click: function () {
+                            $(this).dialog("close");
+                            confirmationElement.remove();
+
+                            checkedContacts.each(function () {
+                                var allContactNumbers = $(".phone-book tbody tr td:nth-child(2)");
+                                var rowCurrentNumber = $(this).find("td:nth-child(2)").text();
+
+                                $(this).remove();
+                                recalculateContactNumber(rowCurrentNumber, allContactNumbers);
+                                $(".phone-book thead input").prop("checked", false); // reset checkbox checker in thead
+                            });
+                        }
+                    }
+                ]
+            });
+        }
+    });
 }
 
 function clearInputFields(inputFields) {
@@ -157,6 +188,7 @@ function initDeleteConfirmDialog(tableRow, tableCell, rowNumber, allContactNumbe
                 click: function () {
                     tableRow.remove();
                     $(this).dialog("close");
+                    confirmationElement.remove();
                     recalculateContactNumber(rowNumber, allContactNumbers);
                 }
             }
@@ -215,8 +247,8 @@ function validateForm(formFields) {
     validateUniquePhoneNumber(phoneNumber);
 }
 
-function clearWarningMessages() {
-    var warnings = $(".warning-message");
+function clearWarningMessages(warningClassName) {
+    var warnings = $("." + warningClassName);
 
     if (warnings.length === 0) { // no messages to clear
         return;
@@ -270,9 +302,31 @@ function filterContacts() {
             var contactsText = contactsInfoRow.text().toLowerCase();
             $(this).toggle(contactsText.indexOf(searchingValue) !== -1);
         });
+        resetCheckboxes();
+
+        var warningClassName = "warning-filter";
+        if (!($(contacts).is(":visible"))) {
+            $("<div></div>")
+                .text("contact not found...")
+                .addClass(warningClassName)
+                .appendTo($(".header-interface"));
+        } else {
+            clearWarningMessages(warningClassName);
+        }
 
         $(".reset-button").click(function () {
+            clearWarningMessages(warningClassName);
             $(".phone-book tbody tr").show();
         });
     });
+}
+
+// to reset all checkboxes to make sure that hidden contacts (filtered) are not accidentally deleted
+function resetCheckboxes() {
+    var checkboxChecker = $(".phone-book thead input");
+    var allCheckboxes = $(".phone-book tbody input");
+    if (checkboxChecker.prop("checked") === true || allCheckboxes.prop("checked") === true) {
+        checkboxChecker.prop("checked", false);
+        allCheckboxes.prop("checked", false);
+    }
 }

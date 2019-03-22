@@ -11,12 +11,20 @@
 <div class="table-wrapper">
     <h1 class="title">Phone Book</h1>
 
-    <div class="filter-wrapper">
+    <div class="header-interface">
         <label class="search">Search:
             <input type="text" id="contacts-search" title="Search contact" maxlength="25">
         </label>
         <button class="search-button">Search</button>
         <button class="reset-button">Reset</button>
+
+        <div class="delete-all-button-wrapper">
+            <img class="delete-all-image" src="../resources/deleteSign.png" alt="delete all checked contacts"
+                 title="Delete all checked contacts">
+            <button class="delete-all-button" title="Delete all checked contacts">
+                Delete all checked contacts
+            </button>
+        </div>
     </div>
 
     <table class="phone-book">
@@ -52,14 +60,6 @@
             <input type="text" id="phone-number" title="Phone number" maxlength="10">
         </label>
         <button class="add-button" id="add-contact-button">Add to phone book</button>
-    </div>
-    <br>
-    <div class="delete-all-button-wrapper">
-        <img class="delete-all-image" src="../resources/deleteSign.png" alt="delete all checked contacts"
-             title="Delete all checked contacts">
-        <button class="delete-all-button" title="Delete all checked contacts">
-            Delete all checked contacts
-        </button>
     </div>
 </div>
 

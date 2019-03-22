@@ -9,8 +9,7 @@
     text-decoration: underline;
 }
 
-/* contacts' filter */
-.filter-wrapper {
+.header-interface {
     font-weight: bold;
     padding-left: 50px;
     padding-bottom: 15px;
@@ -64,6 +63,15 @@
 .input-form-wrapper {
     border: 2px dashed darkblue;
     box-shadow: 0 0 20px rgba(0, 0, 50, 0.5);
+}
+
+.input-form-wrapper label {
+    text-align: center;
+}
+
+.input-form-wrapper input {
+    margin-left: 5px;
+    float: right;
 }
 
 .add-contact-title {
@@ -158,6 +166,13 @@ input[type="text"].invalid-input {
     color: darkred;
 }
 
+.warning-filter {
+    font-size: 15px;
+    color: red;
+    margin-top: -15px;
+    margin-left: 60px;
+}
+
 /* body of delete confirmation dialog */
 .ui-dialog-content {
     display: block;
@@ -182,9 +197,10 @@ input[type="text"].invalid-input {
 
 /* delete-all-checked-contact button */
 .delete-all-button-wrapper {
+    display: inline-block;
     width: 170px;
     height: 40px;
-    margin: 10px auto;
+    margin: 10px 100px;
 }
 
 .delete-all-button {
