@@ -161,8 +161,7 @@ input[type="text"].invalid-input {
 
 .warning-message {
     font-size: 14px;
-    text-align: center;
-    padding-top: 5px;
+    padding-top: 10px;
     color: darkred;
 }
 
