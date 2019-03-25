@@ -1,0 +1,14 @@
+{
+  "name": "underscore_task",
+  "version": "0.0.1",
+  "description": "underscore_package",
+  "main": "src/underscore.js",
+  "scripts": {
+    "test": "abc"
+  },
+  "author": "Konstantin Biriukov",
+  "license": "ISC",
+  "dependencies": {
+    "underscore": "^1.9.1"
+  }
+}
