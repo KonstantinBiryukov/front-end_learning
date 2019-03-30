@@ -60,16 +60,13 @@ var ageFrom20To30 = _.chain(persons)
     .filter(function (person) {
         return person.age >= 20 && person.age <= 30;
     })
-    .mapObject(function (person) {
-        return _.pick(person, ["name", "lastName"]);
-    })
     .sortBy("age")
     .value();
 
 console.log("2) persons with age from 20 to 30: ");
-for (var propName in ageFrom20To30) {
-    console.log(ageFrom20To30[propName]);
-}
+_.each(ageFrom20To30, function (person) {
+    console.log(_.pick(person, ["name", "lastName"]));
+});
 
 //  • Добавить всем людям поле fullName, которое состоит из фамилии и имени через пробел
 _.each(persons, function (person) {
