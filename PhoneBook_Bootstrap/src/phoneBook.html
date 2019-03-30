@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Phone Book Bootstrap</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/phoneBook.css">
+</head>
+<body>
+
+<div class="container">
+    <p class="h1 title align-middle font-weight-bold">Phone Book</p>
+
+    <div class="row">
+        <div class="header-interface">
+            <nav class="search-field navbar navbar-light bg-light interface-col text-center d-inline-block">
+                <div class="form-inline search">
+                    <input class="form-control mr-sm-2" id="contacts-search" type="search" placeholder="Search contact"
+                           aria-label="Search" maxlength="25">
+                    <button class="btn btn-outline-primary my-2 mx-2 my-sm-0 search-button" type="button">Search
+                    </button>
+                    <button class="btn btn-outline-secondary my-2 mx-2 my-sm-0 reset-button" type="button">Reset
+                    </button>
+                </div>
+            </nav>
+            <div class="interface-col col-md-2 text-center d-inline-block" id="delete-all-interface">
+                <div class="delete-all-button-wrapper ">
+                    <button type="button" class="btn btn-danger delete-all-button" title="Delete all checked contacts">
+                        Delete all checked contacts
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="col-xl-8 col-md-8 table table-striped table-responsive-md phone-book">
+            <thead class="thead-dark">
+            <tr>
+                <th class="align-middle">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" name="checkboxes" value="all">
+                    </label>
+                </th>
+                <th class="align-middle">№</th>
+                <th class="align-middle">Surname</th>
+                <th class="align-middle">Name</th>
+                <th class="align-middle">Phone number</th>
+                <th class="align-middle"></th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="col-xl-4 col-md-4 main-interface-wrapper needs-validation">
+            <div class="form-row input-form-wrapper">
+                <h2 class="add-contact-title w-100 text-center font-weight-bold font-italic">Add contact to phone
+                    book</h2>
+                <div class="input-col w-100">
+                    <label class="d-block">Surname:
+                        <input type="text" class="form-control" id="surname" title="Surname" maxlength="25">
+                    </label>
+                </div>
+                <div class="input-col w-100">
+                    <label class="d-block">Name:
+                        <input type="text" class="form-control" id="name" title="Name" maxlength="20">
+                    </label>
+                </div>
+                <div class="input-col w-100">
+                    <label class="d-block">Phone number:
+                        <input type="text" class="form-control" id="phone-number" title="Phone number" maxlength="10">
+                    </label>
+                </div>
+                <button class="btn btn-primary add-button" id="add-contact-button" type="submit">Add to phone book
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="js/phoneBook.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+.title {
+    font-size: 30px;
+    margin: 30px;
+    text-decoration: underline;
+}
+
+.header-interface {
+    padding-bottom: 15px;
+}
+
+/* contacts table */
+.phone-book {
+    margin-bottom: 20px; /*for browser's stretching*/
+}
+
+.phone-book th,
+.phone-book td {
+    border: 2px solid black;
+    text-align: center;
+}
+
+/* input form */
+.input-form-wrapper {
+    border: 2px dashed darkblue;
+    box-shadow: 0 0 20px rgba(0, 0, 50, 0.5);
+}
+
+.add-contact-title {
+    border-bottom: 2px dashed darkblue;
+    padding: 15px;
+    font-size: 17px;
+    background-color: rgba(0, 0, 255, 0.1);
+}
+
+.input-form-wrapper label {
+    margin: 5px 20px;
+}
+
+input[type="text"] {
+    padding: 3px 5px;
+    border: 1px solid cornflowerblue;
+}
+
+/* general buttons' styles */
+.input-form-wrapper .add-button {
+    border-radius: 7px;
+    font-weight: bold;
+    margin: 15px auto;
+}
+
+.reset-button,
+.search-button {
+    width: 80px;
+}
+
+/* dynamic items */
+.background-image {
+    width: 20px;
+}
+
+.phone-book tbody tr td:last-child button {
+    height: 25px;
+    width: 25px;
+}
+
+.invalid-form {
+    border: 2px dashed darkred;
+    box-shadow: 0 0 20px rgba(250, 0, 0, 0.5);
+}
+
+.message-invalid {
+    background-color: rgba(200, 0, 0, 0.5);
+    border-bottom: 2px dashed darkred;
+}
+
+.badge {
+    top: -10px;
+}
+
+/*delete-all-checked-contact button*/
+.delete-all-button {
+    width: 230px;
+}
+
+button[data-target="#deleteConfirmationDialog"] {
+    background-size: cover;
+    background-image: url("../../resources/deleteImage.png");
+    background-repeat: no-repeat;
+}
