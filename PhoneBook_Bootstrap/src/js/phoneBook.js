@@ -135,7 +135,7 @@ function deleteCheckedContacts() {
 /**
  *  Remove dialog and all its elements;
  *  When any dialog modal is called, a class "modal-open" is automatically added to "body" tag by bootstrap logic.
- *  When a dialog modal is destroyed, "modal-open"'s overflow property automatically changes to 'hidden'.
+ *  When a dialog modal is destroyed, "modal-open"'s 'overflow' property automatically changes to 'hidden'.
  *  To prevent this --> "modal-open" class is removed after destroying any dialog modal.
  */
 function deleteModalDialog() {
