@@ -29,6 +29,7 @@ Vue.component("todo-item", {
         save: function () {
             if (this.item.text.trim().length > 0) {
                 this.previousText = this.item.text;
+                this.$emit("change-warning");
             } else {
                 this.$emit("cancel-changes", this.item, this.previousText);
             }
@@ -76,6 +77,9 @@ Vue.component("todo-list", {
             item.text = previousText;
             this.warningMessage = "Empty item is not allowed. Previous value is returned.";
             this.isInputEmpty = true;
+        },
+        changeWarning: function () {
+            this.isInputEmpty = false;
         }
     }
 });
