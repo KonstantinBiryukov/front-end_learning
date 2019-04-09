@@ -8,48 +8,50 @@
     <link rel="stylesheet" type="text/css" href="css/toDoList.css">
 </head>
 <body>
-<div id="app" class="container">
+<div id="to-do-list-app" class="container">
     <h1 class="m-3 list-title">ToDo List</h1>
     <todo-list></todo-list>
 </div>
+
+<!-- templates for Vue components -->
+<script type="text/x-template" id="todo-list-template">
+    <div>
+        <span v-if="isInputEmpty" v-text="warningMessage" class="badge badge-danger fixed-top"></span>
+        <div class="row col-6 input-group m-3">
+            <input type="text" id="add-form" class="form-control" placeholder="create an item"
+                   v-model="currentToDoText">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button" @click="addItem">Add</button>
+            </div>
+        </div>
+        <ul v-if="items.length"> List of notes:
+            <todo-item v-for="item in items"
+                       @remove-item="removeItem"
+                       @cancel-item="cancelItem"
+                       @cancel-changes="cancelChanges"
+                       v-bind:item="item"
+                       v-bind:key="item.id">
+            </todo-item>
+        </ul>
+    </div>
+</script>
+<script type="text/x-template" id="todo-item-template">
+    <li>
+        <span v-if="!editableMode">{{ item.text }}
+            <button type="button" @click="remove" title="remove" class="image-button remove-button"></button>
+            <button type="button" @click="edit" title="edit" class="image-button edit-button"></button>
+        </span>
+        <span v-else>
+            <input type="text" v-model="item.text">
+            <button type="button" @click="save" title="save" class="image-button save-button"></button>
+            <button type="button" @click="cancel" title="cancel" class="image-button cancel-button"></button>
+        </span>
+    </li>
+</script>
+
 <script type="text/javascript" src="../node_modules/vue/dist/vue.js"></script>
 <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
 <script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 <script type="text/javascript" src="js/toDoList.js"></script>
 </body>
 </html>
-
-
-<!--<div id="todo-list-app" class="container">-->
-
-<!--<h1 class="mt-3 list-title">ToDo List</h1>-->
-<!--<div class="row col-6 input-group m-3">-->
-<!--<input type="text" id="add-form" class="form-control" placeholder="create an item" v-model="todoText">-->
-<!--<div class="input-group-append">-->
-<!--<button class="btn btn-outline-primary" type="button" @click="addItem">Add</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div>-->
-<!--<ul v-if="items.length !== 0">-->
-<!--List of notes:-->
-<!--<li v-for="(item, i) in items">-->
-<!--<span v-if="!editableMode"> {{ item }}</span>-->
-<!--<input v-if="editableMode" type="text" v-model="items[i]">-->
-
-<!--<button v-if="!editableMode" @click="deleteItem(i)" class="btn-edit">-->
-<!--<img :src="links.delLink" class="image-button">-->
-<!--</button>-->
-<!--<button v-if="!editableMode" @click="editItem(i)" class="btn-edit">-->
-<!--<img :src="links.editLink" class="image-button">-->
-<!--</button>-->
-
-<!--<button v-if="editableMode" @click="saveItem" class="btn-edit">-->
-<!--<img :src="links.saveLink" class="image-button">-->
-<!--</button>-->
-<!--<button v-if="editableMode" @click="cancelItem(i)" class="btn-edit">-->
-<!--<img :src="links.cancelLink" class="image-button">-->
-<!--</button>-->
-<!--</li>-->
-<!--</ul>-->
-<!--</div>-->
-<!--</div>-->

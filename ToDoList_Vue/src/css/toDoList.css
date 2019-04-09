@@ -8,3 +8,19 @@
 .badge-danger {
     font-size: 13px;
 }
+
+.remove-button {
+    background-image: url("../../resources/deleteImage.png");
+}
+
+.edit-button {
+    background-image: url("../../resources/editImage.png");
+}
+
+.save-button {
+    background-image: url("../../resources/saveImage.png");
+}
+
+.cancel-button {
+    background-image: url("../../resources/cancelImage.png");
+}
