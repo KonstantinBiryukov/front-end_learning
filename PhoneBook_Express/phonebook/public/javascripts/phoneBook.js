@@ -42,7 +42,7 @@ new Vue({
     },
     methods: {
         deleteContact: function () {
-            if (this.checkedContactsId.length > 0) { // re-direct to deleteAll if there're checked contacts
+            if (this.selectedContact === null) { // re-direct to deleteAll if there're checked contacts
                 this.deleteAll();
                 this.showModal = false;
                 return;
@@ -126,7 +126,6 @@ new Vue({
         },
         reset: function () {
             this.usedSearchTerm = "";
-
             this.checkedContactsId = [];
             this.allChecked = false;
             this.loadContacts();
@@ -144,7 +143,9 @@ new Vue({
         },
         confirmDelete: function (contact) {
             this.showModal = true;
-            this.selectedContact = contact;
+            if (contact !== "deleteAll") {
+                this.selectedContact = contact;
+            }
         }
     }
 });
