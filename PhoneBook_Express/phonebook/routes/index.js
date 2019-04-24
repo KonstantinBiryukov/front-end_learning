@@ -13,6 +13,8 @@ var id = 1;
 
 router.get('/getContacts', function (req, res) {
     var search = (req.query.search || '').toUpperCase(); // get parameter from url, if no search --> empty string
+    var success = true;
+
     var filteredContacts =
         search === ""
             ? contacts
@@ -21,24 +23,31 @@ router.get('/getContacts', function (req, res) {
                     contact.surname.toUpperCase().indexOf(search) !== -1 ||
                     contact.phoneNumber.toUpperCase().indexOf(search) !== -1
             });
-    res.send(filteredContacts);
+
+    if (search !== "" && filteredContacts.length === 0) {
+        success = false;
+    }
+    res.send({
+        success: success,
+        contacts: filteredContacts
+    });
 });
 
 router.post('/deleteContact', function (req, res) {
-    var id = req.body.id;
+    var selectedContactId = req.body.id;
 
-    contacts = contacts.filter(function (c) {
-        return c.id !== id;
+    contacts = contacts.filter(function (contact) {
+        return contact.id !== selectedContactId;
     });
 
     res.send(contacts);
 });
 
 router.post('/deleteAll', function (req, res) {
-    var id = req.body.contact;
+    var checkedContactsIds = req.body.id;
 
-    contacts = contacts.filter(function (c) {
-        return id.indexOf(c.id) === -1;
+    contacts = contacts.filter(function (contact) {
+        return checkedContactsIds.indexOf(contact.id) === -1;
     });
 
     res.send(contacts);
@@ -60,14 +69,14 @@ router.post('/addContact', function (req, res) {
     }
 
     // validation for unique phone number
-    contacts.forEach(function (c) {
+    contacts.some(function (c) {
         if (contact.phoneNumber === c.phoneNumber) {
             success = false;
             message = "is already added";
         }
     });
 
-    if (success === false) {
+    if (!success) {
         res.send({
             success: false,
             message: message

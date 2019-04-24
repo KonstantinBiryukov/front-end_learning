@@ -67,6 +67,10 @@ input[type="text"] {
     width: 25px;
 }
 
+.phone-book thead tr th:last-child {
+    width: 50px;
+}
+
 .invalid-form {
     border: 2px dashed darkred;
     box-shadow: 0 0 20px rgba(250, 0, 0, 0.5);
@@ -139,9 +143,6 @@ button[data-target="#deleteConfirmationDialog"] {
  * The following styles are auto-applied to elements with
  * transition="modal" when their visibility is toggled
  * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
  */
 
 .modal-enter {
@@ -162,4 +163,10 @@ button[data-target="#deleteConfirmationDialog"] {
     background-size: cover;
     background-image: url("../images/deleteImage.png");
     background-repeat: no-repeat;
+}
+
+.contact-not-found {
+    position: absolute;
+    top: -10px;
+    background-color: indianred;
 }

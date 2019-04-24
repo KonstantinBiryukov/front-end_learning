@@ -34,7 +34,8 @@ new Vue({
             checkedContactsId: [],
             allChecked: false,
             showModal: false,
-            selectedContact: null
+            selectedContact: null,
+            isContactFound: true
         }
     },
     created: function () {
@@ -52,13 +53,15 @@ new Vue({
                 self.loadContacts();
             });
             this.showModal = false;
+
             this.selectedContact = null;
         },
         deleteAll: function () {
             var self = this;
-            post("/deleteAll", {contact: self.checkedContactsId}).done(function () {
+            post("/deleteAll", {id: self.checkedContactsId}).done(function () {
                 self.loadContacts();
             });
+            this.showModal = false;
             this.allChecked = false;
         },
         addContact: function () {
@@ -107,7 +110,9 @@ new Vue({
         loadContacts: function () {
             var self = this;
             $.get("/getContacts", {search: this.usedSearchTerm}).done(function (contacts) {
-                self.contacts = contacts;
+                // if there're no contacts from search, a response's success will be equal to "false"
+                self.contacts = contacts.contacts;
+                self.isContactFound = contacts.success;
 
                 // if response is came from search function -->
                 // --> some checked contacts might be hidden and accidentally deleted as a result;
@@ -133,16 +138,19 @@ new Vue({
         checkAll: function () {
             this.checkedContactsId = [];
             if (!this.allChecked) {
-                for (var contact in this.contacts) {
-                    this.checkedContactsId.push(this.contacts[contact].id);
-                }
+                var self = this;
+                self.contacts.map(function (contact) {
+                    self.checkedContactsId.push(contact.id);
+                });
             }
         },
         check: function () {
             this.allChecked = false;
         },
         confirmDelete: function (contact) {
-            this.showModal = true;
+            if (this.checkedContactsId.length || contact !== "deleteAll") {
+                this.showModal = true;
+            }
             if (contact !== "deleteAll") {
                 this.selectedContact = contact;
             }
