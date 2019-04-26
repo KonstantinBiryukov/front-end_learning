@@ -1,0 +1,143 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+    <div class="container" id="phone-book">
+        <p class="h1 title align-middle font-weight-bold">Phone Book</p>
+
+        <div class="row">
+            <div class="header-interface">
+                <nav class="search-field navbar navbar-light bg-light interface-col text-center d-inline-block">
+                    <div class="form-inline search">
+                        <div class="contact-not-found" v-cloak v-show="!isContactFound">Contact not found...</div>
+                        <input class="form-control mr-sm-2" id="contacts-search" type="search"
+                               placeholder="Search contact"
+                               aria-label="Search" maxlength="25"
+                               v-model="searchField">
+                        <button class="btn btn-outline-primary my-2 mx-sm-2 search-button" type="button"
+                                @click="search">Search
+                        </button>
+                        <button class="btn btn-outline-secondary my-2 mx-2 reset-button" type="button"
+                                @click="reset">Reset
+                        </button>
+                    </div>
+                </nav>
+                <div class="interface-col col-md-2 text-center d-inline-block" id="delete-all-interface">
+                    <div class="delete-all-button-wrapper my-3">
+                        <button type="button" class="btn btn-danger delete-all-button"
+                                title="Delete all checked contacts" @click="confirmDelete('deleteAll')">
+                            Delete all checked contacts
+                        </button>
+                        <modal v-if="showModal" @close="showModal = false" @delete-contact="deleteContact">
+                            <h5 v-cloak slot="header">Delete confirmation</h5>
+                        </modal>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <table class="col-xl-8 col-md-8 table table-striped table-responsive-md phone-book">
+                <thead class="thead-dark">
+                <tr>
+                    <th class="align-middle">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="checkboxes"
+                                   v-model="allChecked" @click="checkAll">
+                        </label>
+                    </th>
+                    <th class="align-middle">№</th>
+                    <th class="align-middle">Surname</th>
+                    <th class="align-middle">Name</th>
+                    <th class="align-middle">Phone number</th>
+                    <th class="align-middle"></th>
+                </tr>
+                </thead>
+                <tbody v-cloak v-if="contacts.length">
+                <tr v-for="(contact, index) in contacts" :key="contact.id">
+                    <td><input type="checkbox" name="contact" :value="contact.id"
+                               v-model="checkedContactsId" @click="check"></td>
+                    <td v-text="index + 1"></td>
+                    <td v-text="contact.surname"></td>
+                    <td v-text="contact.name"></td>
+                    <td v-text="contact.phoneNumber"></td>
+                    <td>
+                        <button class="show-modal" title="Delete contact" @click="confirmDelete(contact)"></button>
+                        <modal v-if="showModal" @close="showModal = false" @delete-contact="deleteContact">
+                            <h5 slot="header">Delete confirmation</h5>
+                        </modal>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="col-xl-4 col-md-4 main-interface-wrapper needs-validation">
+                <div class="form-row input-form-wrapper">
+                    <h2 class="add-contact-title w-100 text-center font-weight-bold font-italic">Add contact to phone
+                        book</h2>
+                    <div class="input-col w-100">
+                        <label class="d-block">Surname:
+                            <input type="text" class="form-control" id="surname" title="Surname" maxlength="25"
+                                   v-model="name" :class="[isValidName ? 'is-valid' : 'is-invalid']">
+                            <div v-if="!isValidName" :class="{'invalid-feedback': !isValidName}"
+                                 v-text="'Surname ' + invalidMessage"></div>
+                        </label>
+                    </div>
+                    <div class="input-col w-100">
+                        <label class="d-block">Name:
+                            <input type="text" class="form-control" id="name" title="Name" maxlength="20"
+                                   v-model="surname" :class="[isValidSurname ? 'is-valid' : 'is-invalid']">
+                            <div v-if="!isValidSurname" :class="{'invalid-feedback': !isValidSurname}"
+                                 v-text="'Name ' + invalidMessage"></div>
+                        </label>
+                    </div>
+                    <div class="input-col w-100">
+                        <label class="d-block">Phone number:
+                            <input type="text" class="form-control" id="phone-number" title="Phone number"
+                                   maxlength="10" v-model="phoneNumber"
+                                   :class="[isValidPhoneNumber ? 'is-valid' : 'is-invalid']">
+                            <div v-if="!isValidPhoneNumber" :class="{'invalid-feedback': !isValidPhoneNumber}"
+                                 v-text="'Phone number ' + invalidMessage"></div>
+                        </label>
+                    </div>
+                    <button class="btn btn-primary add-button" id="add-contact-button" type="button"
+                            @click="addContact">Add to phone book
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- template for the modal component from https://vuejs.org/v2/examples/modal.html-->
+    <script type="text/x-template" id="modal-template">
+        <transition name="modal">
+            <div class="modal-mask">
+                <div class="modal-wrapper">
+                    <div class="modal-container">
+
+                        <div class="modal-header">
+                            <slot name="header">
+                                default header
+                            </slot>
+                        </div>
+
+                        <div class="modal-body">
+                            <slot name="body" v-text="body-text">
+                                Would you like to delete this contact(s) ?
+                            </slot>
+                        </div>
+
+                        <div class="modal-footer">
+                            <slot name="footer">
+                                <button id="close" class="modal-default-button" @click="$emit('close')">
+                                    No
+                                </button>
+                                <button id="yes" class="modal-default-button" @click="deleteContact">
+                                    Yes
+                                </button>
+                            </slot>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
+    </script>
+{% endblock %}
