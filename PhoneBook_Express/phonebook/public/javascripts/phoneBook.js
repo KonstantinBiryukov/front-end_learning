@@ -110,16 +110,15 @@ new Vue({
         loadContacts: function () {
             var self = this;
             $.get("/getContacts", {search: this.usedSearchTerm}).done(function (contacts) {
-                // if there're no contacts from search, a response's success will be equal to "false"
-                self.contacts = contacts.contacts;
-                self.isContactFound = contacts.success;
+                // if there're no contacts from search but searchTerm is not empty, "isContactFound" flag will be switched
+                self.contacts = contacts;
+                self.isContactFound = !(contacts.length === 0 && self.usedSearchTerm !== "");
 
                 // if response is came from search function -->
                 // --> some checked contacts might be hidden and accidentally deleted as a result;
                 // only checkers that was remain after search should be left, the other checkers are reset
-                var showedContactsId = [];
-                self.contacts.forEach(function (contact) {
-                    showedContactsId.push(contact.id);
+                var showedContactsId = self.contacts.map(function (contact) {
+                    return contact.id;
                 });
                 // new checked contacts are contacts that checked (checkedContacts) and showed (showedContacts) at the same time
                 self.checkedContactsId = _.intersection(showedContactsId, self.checkedContactsId);
@@ -139,8 +138,8 @@ new Vue({
             this.checkedContactsId = [];
             if (!this.allChecked) {
                 var self = this;
-                self.contacts.map(function (contact) {
-                    self.checkedContactsId.push(contact.id);
+                self.checkedContactsId = self.contacts.map(function (contact) {
+                    return contact.id;
                 });
             }
         },

@@ -8,7 +8,7 @@
             <div class="header-interface">
                 <nav class="search-field navbar navbar-light bg-light interface-col text-center d-inline-block">
                     <div class="form-inline search">
-                        <div class="contact-not-found" v-cloak v-show="!isContactFound">Contact not found...</div>
+                        <div class="contact-not-found" v-cloak v-show="!isContactFound">Contacts not found...</div>
                         <input class="form-control mr-sm-2" id="contacts-search" type="search"
                                placeholder="Search contact"
                                aria-label="Search" maxlength="25"
@@ -27,7 +27,7 @@
                                 title="Delete all checked contacts" @click="confirmDelete('deleteAll')">
                             Delete all checked contacts
                         </button>
-                        <modal v-if="showModal" @close="showModal = false" @delete-contact="deleteContact">
+                        <modal v-if="showModal" @close="showModal = false" @delete-contact="deleteAll">
                             <h5 v-cloak slot="header">Delete confirmation</h5>
                         </modal>
                     </div>

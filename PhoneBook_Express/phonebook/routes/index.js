@@ -13,8 +13,6 @@ var id = 1;
 
 router.get('/getContacts', function (req, res) {
     var search = (req.query.search || '').toUpperCase(); // get parameter from url, if no search --> empty string
-    var success = true;
-
     var filteredContacts =
         search === ""
             ? contacts
@@ -23,14 +21,7 @@ router.get('/getContacts', function (req, res) {
                     contact.surname.toUpperCase().indexOf(search) !== -1 ||
                     contact.phoneNumber.toUpperCase().indexOf(search) !== -1
             });
-
-    if (search !== "" && filteredContacts.length === 0) {
-        success = false;
-    }
-    res.send({
-        success: success,
-        contacts: filteredContacts
-    });
+    res.send(filteredContacts);
 });
 
 router.post('/deleteContact', function (req, res) {
