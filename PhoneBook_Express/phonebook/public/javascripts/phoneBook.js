@@ -112,7 +112,7 @@ new Vue({
             $.get("/getContacts", {search: this.usedSearchTerm}).done(function (contacts) {
                 // if there're no contacts from search but searchTerm is not empty, "isContactFound" flag will be switched
                 self.contacts = contacts;
-                self.isContactFound = !(contacts.length === 0 && self.usedSearchTerm !== "");
+                self.isContactFound = contacts.length !== 0 || self.usedSearchTerm === "";
 
                 // if response is came from search function -->
                 // --> some checked contacts might be hidden and accidentally deleted as a result;
