@@ -5,7 +5,7 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 module.exports = {
     devtool: "source-map",
-    entry: "./public/javascripts/phoneBook.js",
+    entry: "./src/javascripts/phoneBook.js",
     output: {
         filename: "script.js",
         path: path.resolve(__dirname, "public/dist")
@@ -46,7 +46,6 @@ module.exports = {
         }
     },
     plugins: [
-
         new CleanWebpackPlugin(),
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin({

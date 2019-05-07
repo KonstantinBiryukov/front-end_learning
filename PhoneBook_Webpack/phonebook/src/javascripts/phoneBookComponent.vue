@@ -50,8 +50,7 @@
                     <th class="align-middle"></th>
                 </tr>
                 </thead>
-                <!--<tbody v-cloak v-if="contacts.length">-->
-                <tbody>
+                <tbody v-cloak v-if="contacts.length">
                 <tr v-for="(contact, index) in contacts" :key="contact.id">
                     <td><input type="checkbox" name="contact" :value="contact.id"
                                v-model="checkedContactsId" @click="check"></td>
@@ -110,7 +109,6 @@
     import * as phoneBookService from "./phoneBookService";
     import "../../node_modules/bootstrap/dist/css/bootstrap.css";
     import "../../node_modules/bootstrap/dist/js/bootstrap.bundle";
-
     import _ from "../../node_modules/underscore/underscore";
 
     export default {
@@ -251,6 +249,9 @@
 </script>
 
 <style lang="scss">
+    $dark-blue-border: 2px dashed darkblue;
+    $dark-red-border: 2px dashed darkred;
+
     @mixin title {
         font-size: 30px;
         margin: 30px;
@@ -274,20 +275,21 @@
         margin-bottom: 20px; /*for browser's stretching*/
     }
 
-    .phone-book th,
-    .phone-book td {
-        border: 2px solid black;
-        text-align: center;
+    .phone-book {
+        th, td {
+            border: 2px solid black;
+            text-align: center;
+        }
     }
 
     /* input form */
     .input-form-wrapper {
-        border: 2px dashed darkblue;
+        border: $dark-blue-border;
         box-shadow: 0 0 20px rgba(0, 0, 50, 0.5);
     }
 
     .add-contact-title {
-        border-bottom: 2px dashed darkblue;
+        border-bottom: $dark-blue-border;
         padding: 15px;
         font-size: 17px;
         background-color: rgba(0, 0, 255, 0.1);
@@ -319,23 +321,25 @@
         width: 20px;
     }
 
-    .phone-book tbody tr td:last-child button {
-        height: 25px;
-        width: 25px;
-    }
+    .phone-book {
+        tbody tr td:last-child button {
+            height: 25px;
+            width: 25px;
+        }
 
-    .phone-book thead tr th:last-child {
-        width: 50px;
+        thead tr th:last-child {
+            width: 50px;
+        }
     }
 
     .invalid-form {
-        border: 2px dashed darkred;
+        border: $dark-red-border;
         box-shadow: 0 0 20px rgba(250, 0, 0, 0.5);
     }
 
     .message-invalid {
         background-color: rgba(200, 0, 0, 0.5);
-        border-bottom: 2px dashed darkred;
+        border-bottom: $dark-red-border;
     }
 
     .badge {

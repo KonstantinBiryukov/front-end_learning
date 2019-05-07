@@ -10052,8 +10052,7 @@ a.text-dark:hover, a.text-dark:focus {
   margin-bottom: 20px;
   /*for browser's stretching*/
 }
-.phone-book th,
-.phone-book td {
+.phone-book th, .phone-book td {
   border: 2px solid black;
   text-align: center;
 }
@@ -10117,7 +10116,7 @@ input[type="text"] {
 }
 button[data-target="#deleteConfirmationDialog"] {
   background-size: cover;
-  background-image: url(public/images/deleteImage.png?72f8b3ebf481bd4be1ad3277fd8860e1);
+  background-image: url(src/images/deleteImage.png?72f8b3ebf481bd4be1ad3277fd8860e1);
   background-repeat: no-repeat;
 }
 
@@ -10177,7 +10176,7 @@ button[data-target="#deleteConfirmationDialog"] {
 }
 .show-modal {
   background-size: cover;
-  background-image: url(public/images/deleteImage.png?72f8b3ebf481bd4be1ad3277fd8860e1);
+  background-image: url(src/images/deleteImage.png?72f8b3ebf481bd4be1ad3277fd8860e1);
   background-repeat: no-repeat;
 }
 .contact-not-found {
