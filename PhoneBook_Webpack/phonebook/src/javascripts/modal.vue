@@ -1,13 +1,52 @@
-<!--<template>-->
-    <!---->
-<!--</template>-->
+<template>
+    <!-- template for the modal component from https://vuejs.org/v2/examples/modal.html-->
+    <!--<div id="modal-template">-->
+    <!--<script type="text/x-template">-->
+        <!--<transition name="modal">-->
+            <!--<div class="modal-mask">-->
+                <!--<div class="modal-wrapper">-->
+                    <!--<div class="modal-container">-->
 
-<!--<script>-->
-    <!--export default {-->
-        <!--name: "modal"-->
-    <!--}-->
-<!--</script>-->
+                        <!--<div class="modal-header">-->
+                            <!--<slot name="header">-->
+                                <!--default header-->
+                            <!--</slot>-->
+                        <!--</div>-->
 
-<!--<style scoped>-->
+                        <!--<div class="modal-body">-->
+                            <!--<slot name="body" v-text="body-text">-->
+                                <!--Would you like to delete this contact(s) ?-->
+                            <!--</slot>-->
+                        <!--</div>-->
 
-<!--</style>-->
+                        <!--<div class="modal-footer">-->
+                            <!--<slot name="footer">-->
+                                <!--<button id="close" class="modal-default-button" @click="$emit('close')">-->
+                                    <!--No-->
+                                <!--</button>-->
+                                <!--<button id="yes" class="modal-default-button" @click="deleteContact">-->
+                                    <!--Yes-->
+                                <!--</button>-->
+                            <!--</slot>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</transition>-->
+    <!--</script>-->
+    <!--</div>-->
+</template>
+
+<script>
+    // export default {
+    //     // template: '#modal-template',
+    //     methods: {
+    //         deleteContact() {
+    //             this.$emit("delete-contact");
+    //         }
+    //     }
+    // };
+</script>
+
+<style scoped>
+</style>

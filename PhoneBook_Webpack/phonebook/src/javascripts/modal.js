@@ -1,4 +1,4 @@
-export var modalTemplate = {
+export default {
     template: '#modal-template',
     methods: {
         deleteContact() {

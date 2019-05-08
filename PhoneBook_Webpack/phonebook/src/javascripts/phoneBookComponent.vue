@@ -106,7 +106,7 @@
 </template>
 
 <script>
-    import * as phoneBookService from "./phoneBookService";
+    import phoneBookService from "./phoneBookService";
     import "../../node_modules/bootstrap/dist/css/bootstrap.css";
     import "../../node_modules/bootstrap/dist/js/bootstrap.bundle";
     import _ from "../../node_modules/underscore/underscore";
@@ -157,7 +157,7 @@
                 this.allChecked = false;
             },
             addContact() {
-                let request = {
+                const request = {
                     contact: {
                         name: this.name,
                         surname: this.surname,
@@ -185,7 +185,7 @@
                 this.isValidPhoneNumber = true;
 
                 phoneBookService.addContact(request).done(response => {
-                    let message = response.message;
+                    const message = response.message;
                     if (response.success === false) {
                         this.isValidPhoneNumber = false;
                         this.invalidMessage = message;
@@ -207,7 +207,7 @@
                     // if response is came from search function -->
                     // --> some checked contacts might be hidden and accidentally deleted as a result;
                     // only checkers that was remain after search should be left, the other checkers are reset
-                    let showedContactsId = [];
+                    const showedContactsId = [];
                     this.contacts.forEach(contact => {
                         showedContactsId.push(contact.id);
                     });
