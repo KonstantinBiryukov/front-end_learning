@@ -39,7 +39,7 @@
 
 <script>
     // export default {
-    //     // template: '#modal-template',
+    //     // template: "#modal-template",
     //     methods: {
     //         deleteContact() {
     //             this.$emit("delete-contact");

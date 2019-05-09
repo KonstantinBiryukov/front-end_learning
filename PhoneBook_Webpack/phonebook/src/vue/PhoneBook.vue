@@ -176,7 +176,7 @@
                     this.isValidPhoneNumber = false;
                 }
                 if (this.name === "" || this.surname === "" || this.phoneNumber === "") {
-                    this.invalidMessage = `is not defined`;
+                    this.invalidMessage = "is not defined";
                     return;
                 }
 
@@ -208,7 +208,7 @@
                     // --> some checked contacts might be hidden and accidentally deleted as a result;
                     // only checkers that was remain after search should be left, the other checkers are reset
                     const showedContactsId = [];
-                    this.contacts.forEach(contact => {
+                    this.contacts.map(contact => {
                         showedContactsId.push(contact.id);
                     });
                     // new checked contacts are contacts that checked (checkedContacts) and showed (showedContacts) at the same time
@@ -237,10 +237,10 @@
                 this.allChecked = false;
             },
             confirmDelete(contact) {
-                if (this.checkedContactsId.length || contact !== `deleteAll`) {
+                if (this.checkedContactsId.length || contact !== "deleteAll") {
                     this.showModal = true;
                 }
-                if (contact !== `deleteAll`) {
+                if (contact !== "deleteAll") {
                     this.selectedContact = contact;
                 }
             }
