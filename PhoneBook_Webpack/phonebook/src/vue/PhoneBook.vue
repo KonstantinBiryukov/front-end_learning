@@ -106,12 +106,16 @@
 </template>
 
 <script>
-    import phoneBookService from "./phoneBookService";
+    import phoneBookService from "../javascripts/phoneBookService";
     import "../../node_modules/bootstrap/dist/css/bootstrap.css";
     import "../../node_modules/bootstrap/dist/js/bootstrap.bundle";
     import _ from "../../node_modules/underscore/underscore";
+    import modal from "./Modal.vue";
 
     export default {
+        components: {
+            modal
+        },
         data() {
             return {
                 contacts: [],

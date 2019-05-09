@@ -1,22 +1,11 @@
 import Vue from "vue";
-import modal from "./modal.js";
-// import modal from "./modal.vue";
+import phoneBook from "../vue/PhoneBook.vue";
 
-import phoneBookComponent from "./phoneBookComponent.vue";
-
-Vue.component('modal', modal);
 new Vue({
     el: "#phone-book",
     components: {
-        "phone-book-component": phoneBookComponent
+        phoneBook
     },
-    template: "<phone-book-component></phone-book-component>"
+    template: "<phone-book></phone-book>"
 });
 
-// new Vue({
-//     el: "#modal-template",
-//     components: {
-//         "modal": modal
-//     },
-//     template: "<modal></modal>"
-// });

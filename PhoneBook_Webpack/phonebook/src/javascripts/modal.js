@@ -1,8 +1,8 @@
-export default {
-    template: '#modal-template',
-    methods: {
-        deleteContact() {
-            this.$emit("delete-contact");
-        }
-    }
-};
+// export default {
+//     template: "#modal-template",
+//     methods: {
+//         deleteContact() {
+//             this.$emit("delete-contact");
+//         }
+//     }
+// };
