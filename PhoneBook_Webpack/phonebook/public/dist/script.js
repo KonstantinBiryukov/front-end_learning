@@ -95,7 +95,6 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _vue_PhoneBook_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../vue/PhoneBook.vue */ "./src/vue/PhoneBook.vue");
 //
 //
 //
@@ -133,13 +132,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    phoneBook: _vue_PhoneBook_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
   methods: {
     deleteContact: function deleteContact() {
       this.$emit("delete-contact");
@@ -20287,22 +20280,89 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "modal-template" } }, [
-      _c("script", { attrs: { type: "text/x-template" } }, [
-        _vm._v(
-          '\n    <transition name="modal">\n        <div class="modal-mask">\n            <div class="modal-wrapper">\n                <div class="modal-container">\n\n                    <div class="modal-header">\n                        <slot name="header">\n                            default header\n                        </slot>\n                    </div>\n\n                    <div class="modal-body">\n                        <slot name="body" v-text="body-text">\n                            Would you like to delete this contact(s) ?\n                        </slot>\n                    </div>\n\n                    <div class="modal-footer">\n                        <slot name="footer">\n                            <button id="close" class="modal-default-button" @click="$emit(\'close\')">\n                                No\n                            </button>\n                            <button id="yes" class="modal-default-button" @click="deleteContact">\n                                Yes\n                            </button>\n                        </slot>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </transition>\n'
-        )
+  return _c(
+    "div",
+    { attrs: { id: "modal-template" } },
+    [
+      _c("transition", { attrs: { name: "modal" } }, [
+        _c("div", { staticClass: "modal-mask" }, [
+          _c("div", { staticClass: "modal-wrapper" }, [
+            _c("div", { staticClass: "modal-container" }, [
+              _c(
+                "div",
+                { staticClass: "modal-header" },
+                [
+                  _vm._t("header", [
+                    _vm._v(
+                      "\n                            default header\n                        "
+                    )
+                  ])
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "modal-body" },
+                [
+                  _vm._t("body", [
+                    _vm._v(
+                      "\n                            Would you like to delete this contact(s) ?\n                        "
+                    )
+                  ])
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "modal-footer" },
+                [
+                  _vm._t("footer", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "modal-default-button",
+                        attrs: { id: "close" },
+                        on: {
+                          click: function($event) {
+                            return _vm.$emit("close")
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                No\n                            "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "modal-default-button",
+                        attrs: { id: "yes" },
+                        on: { click: _vm.deleteContact }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                Yes\n                            "
+                        )
+                      ]
+                    )
+                  ])
+                ],
+                2
+              )
+            ])
+          ])
+        ])
       ])
-    ])
-  }
-]
+    ],
+    1
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

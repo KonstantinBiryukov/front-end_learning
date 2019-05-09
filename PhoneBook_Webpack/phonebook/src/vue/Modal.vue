@@ -1,7 +1,6 @@
 <template>
-     <!--template for the modal component from https://vuejs.org/v2/examples/modal.html-->
+    <!--template for the modal component from https://vuejs.org/v2/examples/modal.html-->
     <div id="modal-template">
-    <script type="text/x-template">
         <transition name="modal">
             <div class="modal-mask">
                 <div class="modal-wrapper">
@@ -33,7 +32,6 @@
                 </div>
             </div>
         </transition>
-    </script>
     </div>
 </template>
 
