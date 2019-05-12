@@ -2,16 +2,16 @@ import post from "./post.js";
 import $ from "jquery";
 
 export default {
-    deleteContact(data) {
-        return post("/deleteContact", data);
+    deleteContact(contactId) {
+        return post("/deleteContact", {id: contactId});
     },
-    deleteAll(data) {
-        return post("/deleteAll", data);
+    deleteAll(checkedContactsIds) {
+        return post("/deleteAll", {id: checkedContactsIds});
     },
-    addContact(request) {
-        return post("/addContact", request);
+    addContact(contact) {
+        return post("/addContact", contact);
     },
     getContacts(search) {
-        return $.get("/getContacts", search);
+        return $.get("/getContacts", {search: search});
     }
 }

@@ -53,7 +53,7 @@ router.post('/deleteAll', function (req, res) {
 });
 
 router.post('/addContact', function (req, res) {
-    var contact = req.body.contact;
+    var contact = req.body;
     contact.id = id;
     ++id;
 

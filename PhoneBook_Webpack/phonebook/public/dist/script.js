@@ -86,6 +86,57 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/vue/ContactForm.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4!./node_modules/vue-loader/lib??vue-loader-options!./src/vue/ContactForm.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({// name: "Form"
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/vue/Modal.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4!./node_modules/vue-loader/lib??vue-loader-options!./src/vue/Modal.vue?vue&type=script&lang=js& ***!
@@ -158,7 +209,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_bootstrap_dist_js_bootstrap_bundle__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_bootstrap_dist_js_bootstrap_bundle__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _node_modules_underscore_underscore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../node_modules/underscore/underscore */ "./node_modules/underscore/underscore.js");
 /* harmony import */ var _node_modules_underscore_underscore__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_underscore_underscore__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Modal_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Modal.vue */ "./src/vue/Modal.vue");
+/* harmony import */ var _ContactForm_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ContactForm.vue */ "./src/vue/ContactForm.vue");
+/* harmony import */ var _Modal_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Modal.vue */ "./src/vue/Modal.vue");
 //
 //
 //
@@ -266,6 +318,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 
@@ -273,7 +327,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    modal: _Modal_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    modal: _Modal_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    contactForm: _ContactForm_vue__WEBPACK_IMPORTED_MODULE_4__["default"] // addContactForm
+
   },
   data: function data() {
     return {
@@ -309,9 +365,7 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
-      _javascripts_phoneBookService__WEBPACK_IMPORTED_MODULE_0__["default"].deleteContact({
-        id: this.selectedContact.id
-      }).done(function () {
+      _javascripts_phoneBookService__WEBPACK_IMPORTED_MODULE_0__["default"].deleteContact(this.selectedContact.id).done(function () {
         _this.loadContacts();
       });
       this.showModal = false;
@@ -320,9 +374,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteAll: function deleteAll() {
       var _this2 = this;
 
-      _javascripts_phoneBookService__WEBPACK_IMPORTED_MODULE_0__["default"].deleteAll({
-        id: this.checkedContactsId
-      }).done(function () {
+      _javascripts_phoneBookService__WEBPACK_IMPORTED_MODULE_0__["default"].deleteAll(this.checkedContactsId).done(function () {
         _this2.loadContacts();
       });
       this.showModal = false;
@@ -359,7 +411,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isValidName = true;
       this.isValidSurname = true;
       this.isValidPhoneNumber = true;
-      _javascripts_phoneBookService__WEBPACK_IMPORTED_MODULE_0__["default"].addContact(request).done(function (response) {
+      _javascripts_phoneBookService__WEBPACK_IMPORTED_MODULE_0__["default"].addContact(request.contact).done(function (response) {
         var message = response.message;
 
         if (response.success === false) {
@@ -379,19 +431,15 @@ __webpack_require__.r(__webpack_exports__);
     loadContacts: function loadContacts() {
       var _this4 = this;
 
-      _javascripts_phoneBookService__WEBPACK_IMPORTED_MODULE_0__["default"].getContacts({
-        search: this.usedSearchTerm
-      }).done(function (contacts) {
+      _javascripts_phoneBookService__WEBPACK_IMPORTED_MODULE_0__["default"].getContacts(this.usedSearchTerm).done(function (contacts) {
         // if there're no contacts from search, a response's success will be equal to "false"
         _this4.contacts = contacts.contacts;
         _this4.isContactFound = contacts.success; // if response is came from search function -->
         // --> some checked contacts might be hidden and accidentally deleted as a result;
         // only checkers that was remain after search should be left, the other checkers are reset
 
-        var showedContactsId = [];
-
-        _this4.contacts.map(function (contact) {
-          showedContactsId.push(contact.id);
+        var showedContactsId = _this4.contacts.map(function (contact) {
+          return contact.id;
         }); // new checked contacts are contacts that checked (checkedContacts) and showed (showedContacts) at the same time
 
 
@@ -409,13 +457,11 @@ __webpack_require__.r(__webpack_exports__);
       this.loadContacts();
     },
     checkAll: function checkAll() {
-      var _this5 = this;
-
       this.checkedContactsId = [];
 
       if (!this.allChecked) {
-        this.contacts.map(function (contact) {
-          _this5.checkedContactsId.push(contact.id);
+        this.checkedContactsId = this.contacts.map(function (contact) {
+          return contact.id;
         });
       }
     },
@@ -20265,6 +20311,184 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/vue/ContactForm.vue?vue&type=template&id=a84d94dc&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/vue/ContactForm.vue?vue&type=template&id=a84d94dc&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "col-xl-4 col-md-4 main-interface-wrapper needs-validation",
+      attrs: { id: "add-contact-form" }
+    },
+    [
+      _c("div", { staticClass: "form-row input-form-wrapper" }, [
+        _c(
+          "h2",
+          {
+            staticClass:
+              "add-contact-title w-100 text-center font-weight-bold font-italic"
+          },
+          [_vm._v("Add contact to phone\n            book")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-col w-100" }, [
+          _c("label", { staticClass: "d-block" }, [
+            _vm._v("Surname:\n                "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.name,
+                  expression: "name"
+                }
+              ],
+              staticClass: "form-control",
+              class: [_vm.isValidName ? "is-valid" : "is-invalid"],
+              attrs: {
+                type: "text",
+                id: "surname",
+                title: "Surname",
+                maxlength: "25"
+              },
+              domProps: { value: _vm.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.name = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            !_vm.isValidName
+              ? _c("div", {
+                  class: { "invalid-feedback": !_vm.isValidName },
+                  domProps: {
+                    textContent: _vm._s("Surname " + _vm.invalidMessage)
+                  }
+                })
+              : _vm._e()
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-col w-100" }, [
+          _c("label", { staticClass: "d-block" }, [
+            _vm._v("Name:\n                "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.surname,
+                  expression: "surname"
+                }
+              ],
+              staticClass: "form-control",
+              class: [_vm.isValidSurname ? "is-valid" : "is-invalid"],
+              attrs: {
+                type: "text",
+                id: "name",
+                title: "Name",
+                maxlength: "20"
+              },
+              domProps: { value: _vm.surname },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.surname = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            !_vm.isValidSurname
+              ? _c("div", {
+                  class: { "invalid-feedback": !_vm.isValidSurname },
+                  domProps: {
+                    textContent: _vm._s("Name " + _vm.invalidMessage)
+                  }
+                })
+              : _vm._e()
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-col w-100" }, [
+          _c("label", { staticClass: "d-block" }, [
+            _vm._v("Phone number:\n                "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.phoneNumber,
+                  expression: "phoneNumber"
+                }
+              ],
+              staticClass: "form-control",
+              class: [_vm.isValidPhoneNumber ? "is-valid" : "is-invalid"],
+              attrs: {
+                type: "text",
+                id: "phone-number",
+                title: "Phone number",
+                maxlength: "10"
+              },
+              domProps: { value: _vm.phoneNumber },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.phoneNumber = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            !_vm.isValidPhoneNumber
+              ? _c("div", {
+                  class: { "invalid-feedback": !_vm.isValidPhoneNumber },
+                  domProps: {
+                    textContent: _vm._s("Phone number " + _vm.invalidMessage)
+                  }
+                })
+              : _vm._e()
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary add-button",
+            attrs: { id: "add-contact-button", type: "button" },
+            on: { click: _vm.addContact }
+          },
+          [_vm._v("Add to phone book\n        ")]
+        )
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/vue/Modal.vue?vue&type=template&id=4ae74f3b&scoped=true&":
 /*!****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/vue/Modal.vue?vue&type=template&id=4ae74f3b&scoped=true& ***!
@@ -20528,338 +20752,192 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "table",
-        {
-          staticClass:
-            "col-xl-8 col-md-8 table table-striped table-responsive-md phone-book"
-        },
-        [
-          _c("thead", { staticClass: "thead-dark" }, [
-            _c("tr", [
-              _c("th", { staticClass: "align-middle" }, [
-                _c("label", { staticClass: "checkbox-wrapper" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.allChecked,
-                        expression: "allChecked"
-                      }
-                    ],
-                    attrs: { type: "checkbox", name: "checkboxes" },
-                    domProps: {
-                      checked: Array.isArray(_vm.allChecked)
-                        ? _vm._i(_vm.allChecked, null) > -1
-                        : _vm.allChecked
-                    },
-                    on: {
-                      click: _vm.checkAll,
-                      change: function($event) {
-                        var $$a = _vm.allChecked,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 && (_vm.allChecked = $$a.concat([$$v]))
-                          } else {
-                            $$i > -1 &&
-                              (_vm.allChecked = $$a
-                                .slice(0, $$i)
-                                .concat($$a.slice($$i + 1)))
-                          }
-                        } else {
-                          _vm.allChecked = $$c
+    _c(
+      "div",
+      { staticClass: "row" },
+      [
+        _c(
+          "table",
+          {
+            staticClass:
+              "col-xl-8 col-md-8 table table-striped table-responsive-md phone-book"
+          },
+          [
+            _c("thead", { staticClass: "thead-dark" }, [
+              _c("tr", [
+                _c("th", { staticClass: "align-middle" }, [
+                  _c("label", { staticClass: "checkbox-wrapper" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.allChecked,
+                          expression: "allChecked"
                         }
-                      }
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("th", { staticClass: "align-middle" }, [_vm._v("№")]),
-              _vm._v(" "),
-              _c("th", { staticClass: "align-middle" }, [_vm._v("Surname")]),
-              _vm._v(" "),
-              _c("th", { staticClass: "align-middle" }, [_vm._v("Name")]),
-              _vm._v(" "),
-              _c("th", { staticClass: "align-middle" }, [
-                _vm._v("Phone number")
-              ]),
-              _vm._v(" "),
-              _c("th", { staticClass: "align-middle" })
-            ])
-          ]),
-          _vm._v(" "),
-          _vm.contacts.length
-            ? _c(
-                "tbody",
-                {},
-                _vm._l(_vm.contacts, function(contact, index) {
-                  return _c("tr", { key: contact.id }, [
-                    _c("td", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.checkedContactsId,
-                            expression: "checkedContactsId"
-                          }
-                        ],
-                        attrs: { type: "checkbox", name: "contact" },
-                        domProps: {
-                          value: contact.id,
-                          checked: Array.isArray(_vm.checkedContactsId)
-                            ? _vm._i(_vm.checkedContactsId, contact.id) > -1
-                            : _vm.checkedContactsId
-                        },
-                        on: {
-                          click: _vm.check,
-                          change: function($event) {
-                            var $$a = _vm.checkedContactsId,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = contact.id,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 &&
-                                  (_vm.checkedContactsId = $$a.concat([$$v]))
-                              } else {
-                                $$i > -1 &&
-                                  (_vm.checkedContactsId = $$a
-                                    .slice(0, $$i)
-                                    .concat($$a.slice($$i + 1)))
-                              }
-                            } else {
-                              _vm.checkedContactsId = $$c
-                            }
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { domProps: { textContent: _vm._s(index + 1) } }),
-                    _vm._v(" "),
-                    _c("td", {
-                      domProps: { textContent: _vm._s(contact.surname) }
-                    }),
-                    _vm._v(" "),
-                    _c("td", {
-                      domProps: { textContent: _vm._s(contact.name) }
-                    }),
-                    _vm._v(" "),
-                    _c("td", {
-                      domProps: { textContent: _vm._s(contact.phoneNumber) }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      [
-                        _c("button", {
-                          staticClass: "show-modal",
-                          attrs: { title: "Delete contact" },
-                          on: {
-                            click: function($event) {
-                              return _vm.confirmDelete(contact)
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _vm.showModal
-                          ? _c(
-                              "modal",
-                              {
-                                on: {
-                                  close: function($event) {
-                                    _vm.showModal = false
-                                  },
-                                  "delete-contact": _vm.deleteContact
-                                }
-                              },
-                              [
-                                _c(
-                                  "h5",
-                                  { attrs: { slot: "header" }, slot: "header" },
-                                  [_vm._v("Delete confirmation")]
-                                )
-                              ]
-                            )
-                          : _vm._e()
                       ],
-                      1
-                    )
+                      attrs: { type: "checkbox", name: "checkboxes" },
+                      domProps: {
+                        checked: Array.isArray(_vm.allChecked)
+                          ? _vm._i(_vm.allChecked, null) > -1
+                          : _vm.allChecked
+                      },
+                      on: {
+                        click: _vm.checkAll,
+                        change: function($event) {
+                          var $$a = _vm.allChecked,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 && (_vm.allChecked = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.allChecked = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.allChecked = $$c
+                          }
+                        }
+                      }
+                    })
                   ])
-                }),
-                0
-              )
-            : _vm._e()
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "col-xl-4 col-md-4 main-interface-wrapper needs-validation"
-        },
-        [
-          _c("div", { staticClass: "form-row input-form-wrapper" }, [
-            _c(
-              "h2",
-              {
-                staticClass:
-                  "add-contact-title w-100 text-center font-weight-bold font-italic"
-              },
-              [_vm._v("Add contact to phone\n                    book")]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-col w-100" }, [
-              _c("label", { staticClass: "d-block" }, [
-                _vm._v("Surname:\n                        "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.name,
-                      expression: "name"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  class: [_vm.isValidName ? "is-valid" : "is-invalid"],
-                  attrs: {
-                    type: "text",
-                    id: "surname",
-                    title: "Surname",
-                    maxlength: "25"
-                  },
-                  domProps: { value: _vm.name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.name = $event.target.value
-                    }
-                  }
-                }),
+                ]),
                 _vm._v(" "),
-                !_vm.isValidName
-                  ? _c("div", {
-                      class: { "invalid-feedback": !_vm.isValidName },
-                      domProps: {
-                        textContent: _vm._s("Surname " + _vm.invalidMessage)
-                      }
-                    })
-                  : _vm._e()
+                _c("th", { staticClass: "align-middle" }, [_vm._v("№")]),
+                _vm._v(" "),
+                _c("th", { staticClass: "align-middle" }, [_vm._v("Surname")]),
+                _vm._v(" "),
+                _c("th", { staticClass: "align-middle" }, [_vm._v("Name")]),
+                _vm._v(" "),
+                _c("th", { staticClass: "align-middle" }, [
+                  _vm._v("Phone number")
+                ]),
+                _vm._v(" "),
+                _c("th", { staticClass: "align-middle" })
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "input-col w-100" }, [
-              _c("label", { staticClass: "d-block" }, [
-                _vm._v("Name:\n                        "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.surname,
-                      expression: "surname"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  class: [_vm.isValidSurname ? "is-valid" : "is-invalid"],
-                  attrs: {
-                    type: "text",
-                    id: "name",
-                    title: "Name",
-                    maxlength: "20"
-                  },
-                  domProps: { value: _vm.surname },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.surname = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                !_vm.isValidSurname
-                  ? _c("div", {
-                      class: { "invalid-feedback": !_vm.isValidSurname },
-                      domProps: {
-                        textContent: _vm._s("Name " + _vm.invalidMessage)
-                      }
-                    })
-                  : _vm._e()
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-col w-100" }, [
-              _c("label", { staticClass: "d-block" }, [
-                _vm._v("Phone number:\n                        "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.phoneNumber,
-                      expression: "phoneNumber"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  class: [_vm.isValidPhoneNumber ? "is-valid" : "is-invalid"],
-                  attrs: {
-                    type: "text",
-                    id: "phone-number",
-                    title: "Phone number",
-                    maxlength: "10"
-                  },
-                  domProps: { value: _vm.phoneNumber },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.phoneNumber = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                !_vm.isValidPhoneNumber
-                  ? _c("div", {
-                      class: { "invalid-feedback": !_vm.isValidPhoneNumber },
-                      domProps: {
-                        textContent: _vm._s(
-                          "Phone number " + _vm.invalidMessage
-                        )
-                      }
-                    })
-                  : _vm._e()
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary add-button",
-                attrs: { id: "add-contact-button", type: "button" },
-                on: { click: _vm.addContact }
-              },
-              [_vm._v("Add to phone book\n                ")]
-            )
-          ])
-        ]
-      )
-    ])
+            _vm.contacts.length
+              ? _c(
+                  "tbody",
+                  {},
+                  _vm._l(_vm.contacts, function(contact, index) {
+                    return _c("tr", { key: contact.id }, [
+                      _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.checkedContactsId,
+                              expression: "checkedContactsId"
+                            }
+                          ],
+                          attrs: { type: "checkbox", name: "contact" },
+                          domProps: {
+                            value: contact.id,
+                            checked: Array.isArray(_vm.checkedContactsId)
+                              ? _vm._i(_vm.checkedContactsId, contact.id) > -1
+                              : _vm.checkedContactsId
+                          },
+                          on: {
+                            click: _vm.check,
+                            change: function($event) {
+                              var $$a = _vm.checkedContactsId,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = contact.id,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.checkedContactsId = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.checkedContactsId = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.checkedContactsId = $$c
+                              }
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("td", {
+                        domProps: { textContent: _vm._s(index + 1) }
+                      }),
+                      _vm._v(" "),
+                      _c("td", {
+                        domProps: { textContent: _vm._s(contact.surname) }
+                      }),
+                      _vm._v(" "),
+                      _c("td", {
+                        domProps: { textContent: _vm._s(contact.name) }
+                      }),
+                      _vm._v(" "),
+                      _c("td", {
+                        domProps: { textContent: _vm._s(contact.phoneNumber) }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        [
+                          _c("button", {
+                            staticClass: "show-modal",
+                            attrs: { title: "Delete contact" },
+                            on: {
+                              click: function($event) {
+                                return _vm.confirmDelete(contact)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.showModal
+                            ? _c(
+                                "modal",
+                                {
+                                  on: {
+                                    close: function($event) {
+                                      _vm.showModal = false
+                                    },
+                                    "delete-contact": _vm.deleteContact
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "h5",
+                                    {
+                                      attrs: { slot: "header" },
+                                      slot: "header"
+                                    },
+                                    [_vm._v("Delete confirmation")]
+                                  )
+                                ]
+                              )
+                            : _vm._e()
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  0
+                )
+              : _vm._e()
+          ]
+        ),
+        _vm._v(" "),
+        _c("contactForm")
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -33051,17 +33129,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  deleteContact: function deleteContact(data) {
-    return Object(_post_js__WEBPACK_IMPORTED_MODULE_0__["default"])("/deleteContact", data);
+  deleteContact: function deleteContact(contactId) {
+    return Object(_post_js__WEBPACK_IMPORTED_MODULE_0__["default"])("/deleteContact", {
+      id: contactId
+    });
   },
-  deleteAll: function deleteAll(data) {
-    return Object(_post_js__WEBPACK_IMPORTED_MODULE_0__["default"])("/deleteAll", data);
+  deleteAll: function deleteAll(checkedContactsIds) {
+    return Object(_post_js__WEBPACK_IMPORTED_MODULE_0__["default"])("/deleteAll", {
+      id: checkedContactsIds
+    });
   },
-  addContact: function addContact(request) {
-    return Object(_post_js__WEBPACK_IMPORTED_MODULE_0__["default"])("/addContact", request);
+  addContact: function addContact(contact) {
+    return Object(_post_js__WEBPACK_IMPORTED_MODULE_0__["default"])("/addContact", contact);
   },
   getContacts: function getContacts(search) {
-    return jquery__WEBPACK_IMPORTED_MODULE_1___default.a.get("/getContacts", search);
+    return jquery__WEBPACK_IMPORTED_MODULE_1___default.a.get("/getContacts", {
+      search: search
+    });
   }
 });
 
@@ -33086,6 +33170,75 @@ __webpack_require__.r(__webpack_exports__);
     contentType: "application/json"
   });
 });
+
+/***/ }),
+
+/***/ "./src/vue/ContactForm.vue":
+/*!*********************************!*\
+  !*** ./src/vue/ContactForm.vue ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ContactForm_vue_vue_type_template_id_a84d94dc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ContactForm.vue?vue&type=template&id=a84d94dc&scoped=true& */ "./src/vue/ContactForm.vue?vue&type=template&id=a84d94dc&scoped=true&");
+/* harmony import */ var _ContactForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ContactForm.vue?vue&type=script&lang=js& */ "./src/vue/ContactForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ContactForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ContactForm_vue_vue_type_template_id_a84d94dc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ContactForm_vue_vue_type_template_id_a84d94dc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "a84d94dc",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "src/vue/ContactForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./src/vue/ContactForm.vue?vue&type=script&lang=js&":
+/*!**********************************************************!*\
+  !*** ./src/vue/ContactForm.vue?vue&type=script&lang=js& ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_node_modules_vue_loader_lib_index_js_vue_loader_options_ContactForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib??ref--4!../../node_modules/vue-loader/lib??vue-loader-options!./ContactForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/vue/ContactForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_node_modules_vue_loader_lib_index_js_vue_loader_options_ContactForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./src/vue/ContactForm.vue?vue&type=template&id=a84d94dc&scoped=true&":
+/*!****************************************************************************!*\
+  !*** ./src/vue/ContactForm.vue?vue&type=template&id=a84d94dc&scoped=true& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ContactForm_vue_vue_type_template_id_a84d94dc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./ContactForm.vue?vue&type=template&id=a84d94dc&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/vue/ContactForm.vue?vue&type=template&id=a84d94dc&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ContactForm_vue_vue_type_template_id_a84d94dc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ContactForm_vue_vue_type_template_id_a84d94dc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
