@@ -36,11 +36,99 @@
 </template>
 
 <script>
+    import phoneBookService from "../javascripts/phoneBookService";
+
     export default {
-        // name: "Form"
+        data() {
+            return {
+                name: "",
+                surname: "",
+                phoneNumber: "",
+                isValidName: true,
+                isValidSurname: true,
+                isValidPhoneNumber: true,
+                invalidMessage: ""
+            }
+        },
+        methods: {
+            addContact() {
+                const request = {
+                    contact: {
+                        name: this.name,
+                        surname: this.surname,
+                        phoneNumber: this.phoneNumber
+                    }
+                };
+
+                // empty_fields validation
+                if (this.name === "") {
+                    this.isValidName = false;
+                }
+                if (this.surname === "") {
+                    this.isValidSurname = false;
+                }
+                if (this.phoneNumber === "") {
+                    this.isValidPhoneNumber = false;
+                }
+                if (this.name === "" || this.surname === "" || this.phoneNumber === "") {
+                    this.invalidMessage = "is not defined";
+                    return;
+                }
+
+                this.isValidName = true;
+                this.isValidSurname = true;
+                this.isValidPhoneNumber = true;
+
+                phoneBookService.addContact(request.contact).done(response => {
+                    const message = response.message;
+                    if (response.success === false) {
+                        this.isValidPhoneNumber = false;
+                        this.invalidMessage = message;
+                    } else {
+                        this.name = "";
+                        this.surname = "";
+                        this.phoneNumber = "";
+                        this.$parent.loadContacts();
+                        this.isValidPhoneNumber = true;
+                    }
+                });
+            }
+        }
     }
 </script>
 
-<style scoped>
+<style lang="scss">
+    $dark-blue-border: 2px dashed darkblue;
+    $dark-red-border: 2px dashed darkred;
 
+    .input-form-wrapper {
+        border: $dark-blue-border;
+        box-shadow: 0 0 20px rgba(0, 0, 50, 0.5);
+    }
+
+    .add-contact-title {
+        border-bottom: $dark-blue-border;
+        padding: 15px;
+        font-size: 17px;
+        background-color: rgba(0, 0, 255, 0.1);
+    }
+
+    .input-form-wrapper label {
+        margin: 5px 20px;
+    }
+
+    input[type="text"] {
+        padding: 3px 5px;
+        border: 1px solid cornflowerblue;
+    }
+
+    .invalid-form {
+        border: $dark-red-border;
+        box-shadow: 0 0 20px rgba(250, 0, 0, 0.5);
+    }
+
+    .message-invalid {
+        background-color: rgba(200, 0, 0, 0.5);
+        border-bottom: $dark-red-border;
+    }
 </style>
