@@ -333,6 +333,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -425,6 +426,16 @@ __webpack_require__.r(__webpack_exports__);
       if (contact !== "deleteAll") {
         this.selectedContact = contact;
       }
+    },
+    search: function search(searchField) {
+      this.usedSearchTerm = searchField;
+      this.loadContacts();
+    },
+    reset: function reset() {
+      this.usedSearchTerm = "";
+      this.checkedContactsId = [];
+      this.allChecked = false;
+      this.loadContacts();
     }
   }
 });
@@ -466,19 +477,20 @@ __webpack_require__.r(__webpack_exports__);
     return {
       searchField: ""
     };
-  },
-  methods: {
-    search: function search() {
-      this.$parent.usedSearchTerm = this.searchField;
-      this.$parent.loadContacts();
-    },
-    reset: function reset() {
-      this.$parent.usedSearchTerm = "";
-      this.$parent.checkedContactsId = [];
-      this.$parent.allChecked = false;
-      this.$parent.loadContacts();
-    }
-  }
+  } // ,
+  // methods: {
+  //     search() {
+  //         this.$parent.usedSearchTerm = this.searchField;
+  //         this.$parent.loadContacts();
+  //     },
+  //     reset: function () {
+  //         this.$parent.usedSearchTerm = "";
+  //         this.$parent.checkedContactsId = [];
+  //         this.$parent.allChecked = false;
+  //         this.$parent.loadContacts();
+  //     }
+  // }
+
 });
 
 /***/ }),
@@ -20652,7 +20664,10 @@ var render = function() {
         "div",
         { staticClass: "header-interface" },
         [
-          _c("search-form", { attrs: { isContactFound: _vm.isContactFound } }),
+          _c("search-form", {
+            attrs: { isContactFound: _vm.isContactFound },
+            on: { search: _vm.search, reset: _vm.reset }
+          }),
           _vm._v(" "),
           _c(
             "div",
@@ -20983,7 +20998,11 @@ var render = function() {
           {
             staticClass: "btn btn-outline-primary my-2 mx-sm-2 search-button",
             attrs: { type: "button" },
-            on: { click: _vm.search }
+            on: {
+              click: function($event) {
+                return _vm.$emit("search", _vm.searchField)
+              }
+            }
           },
           [_vm._v("Search\n        ")]
         ),
@@ -20993,7 +21012,11 @@ var render = function() {
           {
             staticClass: "btn btn-outline-secondary my-2 mx-2 reset-button",
             attrs: { type: "button" },
-            on: { click: _vm.reset }
+            on: {
+              click: function($event) {
+                return _vm.$emit("reset")
+              }
+            }
           },
           [_vm._v("Reset\n        ")]
         )

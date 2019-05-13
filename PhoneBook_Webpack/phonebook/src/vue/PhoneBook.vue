@@ -4,7 +4,8 @@
 
         <div class="row">
             <div class="header-interface">
-                <search-form v-bind:isContactFound="isContactFound"></search-form>
+                <search-form v-bind:isContactFound="isContactFound" v-on:search="search"
+                             v-on:reset="reset"></search-form>
                 <div class="interface-col col-md-2 text-center d-inline-block" id="delete-all-interface">
                     <div class="delete-all-button-wrapper my-3">
                         <button type="button" class="btn btn-danger delete-all-button"
@@ -144,6 +145,16 @@
                 if (contact !== "deleteAll") {
                     this.selectedContact = contact;
                 }
+            },
+            search(searchField) {
+                this.usedSearchTerm = searchField;
+                this.loadContacts();
+            },
+            reset: function () {
+                this.usedSearchTerm = "";
+                this.checkedContactsId = [];
+                this.allChecked = false;
+                this.loadContacts();
             }
         }
     }
