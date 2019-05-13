@@ -18,10 +18,12 @@
 
 <script>
     export default {
+        props: {
+            isContactFound: Boolean
+        },
         data() {
             return {
-                searchField: "",
-                isContactFound: true
+                searchField: ""
             }
         },
         methods: {
@@ -40,5 +42,14 @@
 </script>
 
 <style>
+    .reset-button,
+    .search-button {
+        width: 80px;
+    }
 
+    .contact-not-found {
+        position: absolute;
+        top: -10px;
+        background-color: indianred;
+    }
 </style>

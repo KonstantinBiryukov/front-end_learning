@@ -10158,6 +10158,17 @@ input[type="text"] {
     transform: scale(1.1);
 }
 
+
+.reset-button,
+.search-button {
+    width: 80px;
+}
+.contact-not-found {
+    position: absolute;
+    top: -10px;
+    background-color: indianred;
+}
+
 [v-cloak] {
   display: none;
 }
@@ -10185,10 +10196,6 @@ input[type="text"] {
   border-radius: 7px;
   font-weight: bold;
   margin: 15px auto;
-}
-.reset-button,
-.search-button {
-  width: 80px;
 }
 
 /* dynamic items */
@@ -10219,11 +10226,6 @@ button[data-target="#deleteConfirmationDialog"] {
   background-size: cover;
   background-image: url(src/images/deleteImage.png?72f8b3ebf481bd4be1ad3277fd8860e1);
   background-repeat: no-repeat;
-}
-.contact-not-found {
-  position: absolute;
-  top: -10px;
-  background-color: indianred;
 }
 
 

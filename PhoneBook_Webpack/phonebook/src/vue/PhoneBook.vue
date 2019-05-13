@@ -4,7 +4,7 @@
 
         <div class="row">
             <div class="header-interface">
-                <searchForm></searchForm>
+                <search-form v-bind:isContactFound="isContactFound"></search-form>
                 <div class="interface-col col-md-2 text-center d-inline-block" id="delete-all-interface">
                     <div class="delete-all-button-wrapper my-3">
                         <button type="button" class="btn btn-danger delete-all-button"
@@ -53,7 +53,7 @@
                 </tr>
                 </tbody>
             </table>
-            <contactForm></contactForm>
+            <contact-form></contact-form>
         </div>
     </div>
 </template>
@@ -82,6 +82,7 @@
                 allChecked: false,
                 showModal: false,
                 selectedContact: null,
+                isContactFound: true
             }
         },
         created() {
@@ -112,7 +113,7 @@
                 phoneBookService.getContacts(this.usedSearchTerm).done(contacts => {
                     // if there're no contacts from search, a response's success will be equal to "false"
                     this.contacts = contacts.contacts;
-                    searchForm.data().isContactFound = contacts.success;
+                    this.isContactFound = contacts.success;
 
                     // if response is came from search function -->
                     // --> some checked contacts might be hidden and accidentally deleted as a result;
@@ -186,11 +187,6 @@
         margin: 15px auto;
     }
 
-    .reset-button,
-    .search-button {
-        width: 80px;
-    }
-
     /* dynamic items */
     .background-image {
         width: 20px;
@@ -226,11 +222,5 @@
         background-size: cover;
         background-image: url("../images/deleteImage.png");
         background-repeat: no-repeat;
-    }
-
-    .contact-not-found {
-        position: absolute;
-        top: -10px;
-        background-color: indianred;
     }
 </style>

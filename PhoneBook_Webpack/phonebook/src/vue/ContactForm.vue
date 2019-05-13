@@ -52,12 +52,10 @@
         },
         methods: {
             addContact() {
-                const request = {
-                    contact: {
-                        name: this.name,
-                        surname: this.surname,
-                        phoneNumber: this.phoneNumber
-                    }
+                const contact = {
+                    name: this.name,
+                    surname: this.surname,
+                    phoneNumber: this.phoneNumber
                 };
 
                 // empty_fields validation
@@ -79,7 +77,7 @@
                 this.isValidSurname = true;
                 this.isValidPhoneNumber = true;
 
-                phoneBookService.addContact(request.contact).done(response => {
+                phoneBookService.addContact(contact).done(response => {
                     const message = response.message;
                     if (response.success === false) {
                         this.isValidPhoneNumber = false;

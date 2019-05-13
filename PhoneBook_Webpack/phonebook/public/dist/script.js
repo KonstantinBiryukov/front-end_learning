@@ -96,7 +96,6 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _javascripts_phoneBookService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../javascripts/phoneBookService */ "./src/javascripts/phoneBookService.js");
-/* harmony import */ var _PhoneBook_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PhoneBook.vue */ "./src/vue/PhoneBook.vue");
 //
 //
 //
@@ -134,7 +133,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -152,12 +150,10 @@ __webpack_require__.r(__webpack_exports__);
     addContact: function addContact() {
       var _this = this;
 
-      var request = {
-        contact: {
-          name: this.name,
-          surname: this.surname,
-          phoneNumber: this.phoneNumber
-        }
+      var contact = {
+        name: this.name,
+        surname: this.surname,
+        phoneNumber: this.phoneNumber
       }; // empty_fields validation
 
       if (this.name === "") {
@@ -180,7 +176,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isValidName = true;
       this.isValidSurname = true;
       this.isValidPhoneNumber = true;
-      _javascripts_phoneBookService__WEBPACK_IMPORTED_MODULE_0__["default"].addContact(request.contact).done(function (response) {
+      _javascripts_phoneBookService__WEBPACK_IMPORTED_MODULE_0__["default"].addContact(contact).done(function (response) {
         var message = response.message;
 
         if (response.success === false) {
@@ -189,7 +185,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           _this.name = "";
           _this.surname = "";
-          _this.phoneNumber = ""; // this.$emit("loadContact");
+          _this.phoneNumber = "";
 
           _this.$parent.loadContacts();
 
@@ -337,21 +333,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -368,14 +349,13 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       contacts: [],
-      // searchField: "",
       usedSearchTerm: "",
       checked: false,
       checkedContactsId: [],
       allChecked: false,
       showModal: false,
-      selectedContact: null // isContactFound: true
-
+      selectedContact: null,
+      isContactFound: true
     };
   },
   created: function created() {
@@ -413,7 +393,7 @@ __webpack_require__.r(__webpack_exports__);
       _javascripts_phoneBookService__WEBPACK_IMPORTED_MODULE_0__["default"].getContacts(this.usedSearchTerm).done(function (contacts) {
         // if there're no contacts from search, a response's success will be equal to "false"
         _this3.contacts = contacts.contacts;
-        _SearchForm_vue__WEBPACK_IMPORTED_MODULE_6__["default"].data().isContactFound = contacts.success; // if response is came from search function -->
+        _this3.isContactFound = contacts.success; // if response is came from search function -->
         // --> some checked contacts might be hidden and accidentally deleted as a result;
         // only checkers that was remain after search should be left, the other checkers are reset
 
@@ -479,10 +459,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    isContactFound: Boolean
+  },
   data: function data() {
     return {
-      searchField: "",
-      isContactFound: true
+      searchField: ""
     };
   },
   methods: {
@@ -18179,6 +18161,17 @@ return jQuery;
 
 /***/ }),
 
+/***/ "./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js?!./src/vue/SearchForm.vue?vue&type=style&index=0&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib??vue-loader-options!./src/vue/SearchForm.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -20659,7 +20652,7 @@ var render = function() {
         "div",
         { staticClass: "header-interface" },
         [
-          _c("searchForm"),
+          _c("search-form", { attrs: { isContactFound: _vm.isContactFound } }),
           _vm._v(" "),
           _c(
             "div",
@@ -20905,7 +20898,7 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _c("contactForm")
+        _c("contact-form")
       ],
       1
     )
@@ -33513,7 +33506,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SearchForm_vue_vue_type_template_id_66790f24___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SearchForm.vue?vue&type=template&id=66790f24& */ "./src/vue/SearchForm.vue?vue&type=template&id=66790f24&");
 /* harmony import */ var _SearchForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SearchForm.vue?vue&type=script&lang=js& */ "./src/vue/SearchForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _SearchForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SearchForm.vue?vue&type=style&index=0&lang=css& */ "./src/vue/SearchForm.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -33521,7 +33516,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _SearchForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _SearchForm_vue_vue_type_template_id_66790f24___WEBPACK_IMPORTED_MODULE_0__["render"],
   _SearchForm_vue_vue_type_template_id_66790f24___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -33550,6 +33545,22 @@ component.options.__file = "src/vue/SearchForm.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib??ref--4!../../node_modules/vue-loader/lib??vue-loader-options!./SearchForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/vue/SearchForm.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./src/vue/SearchForm.vue?vue&type=style&index=0&lang=css&":
+/*!*****************************************************************!*\
+  !*** ./src/vue/SearchForm.vue?vue&type=style&index=0&lang=css& ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/mini-css-extract-plugin/dist/loader.js!../../node_modules/css-loader/dist/cjs.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib??vue-loader-options!./SearchForm.vue?vue&type=style&index=0&lang=css& */ "./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js?!./src/vue/SearchForm.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
