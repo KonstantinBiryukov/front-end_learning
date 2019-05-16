@@ -51,18 +51,16 @@ module.exports = {
             filename: "styles.css"
         }),
     ],
-    // ,
     devServer: {
         // historyApiFallBack: true,
         // contentBase: path.join(__dirname, "views/"),
         // compress: true,
         host: 'localhost',
         port: 8080,
-        proxy: {
-            '*': {
-                target: 'http://localhost:3000',
-                secure: false
-            }
-        }
+        proxy: [{
+            path: '*',
+            target: 'http://localhost:3000',
+            secure: false
+        }]
     }
 };
