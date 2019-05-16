@@ -10,7 +10,6 @@ module.exports = {
         filename: "script.js",
         path: path.resolve(__dirname, "public/dist")
     },
-
     module: {
         rules: [{
             test: /\.scss$/,
@@ -52,4 +51,16 @@ module.exports = {
             filename: "styles.css"
         }),
     ],
+    devServer: {
+        historyApiFallBack: true,
+        contentBase: path.join(__dirname, "public/dist"),
+        compress: true,
+        port: 8080,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3000',
+                secure: false
+            }
+        }
+    }
 };

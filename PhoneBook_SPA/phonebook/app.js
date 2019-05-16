@@ -5,14 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // middleware to redirect all URLs to index.twig
-
 var app = express();
 var indexRouter = require('./routes/index');
-
-var history = require('connect-history-api-fallback');
-app.use(history({
-    index: "./views/index.twig"
-}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,3 +37,9 @@ app.use(function (err, req, res) {
 });
 
 module.exports = app;
+
+var history = require('connect-history-api-fallback');
+app.use(history({
+    index: "./views/index.twig",
+    verbose: true
+}));

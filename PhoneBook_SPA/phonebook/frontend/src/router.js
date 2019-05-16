@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-// import PhoneBook from './views/PhoneBookMainPage.vue';
+// import PhoneBook from '../../views/index.twig';
 import Page404 from './views/Page404.vue';
 
 Vue.use(Router);
@@ -24,7 +24,7 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     // {
-    //   path: '/',
+    //   path: '/phoneBook',
     //   name: 'phoneBook',
     //   component: PhoneBook
     // },
