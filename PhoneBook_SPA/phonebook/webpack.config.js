@@ -51,13 +51,15 @@ module.exports = {
             filename: "styles.css"
         }),
     ],
+    // ,
     devServer: {
-        historyApiFallBack: true,
-        contentBase: path.join(__dirname, "public/dist"),
-        compress: true,
+        // historyApiFallBack: true,
+        // contentBase: path.join(__dirname, "public/dist"),
+        // compress: true,
+        host: 'localhost',
         port: 8080,
         proxy: {
-            '/api': {
+            '/': {
                 target: 'http://localhost:3000',
                 secure: false
             }
