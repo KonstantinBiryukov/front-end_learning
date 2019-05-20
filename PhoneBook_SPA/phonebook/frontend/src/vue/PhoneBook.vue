@@ -61,9 +61,9 @@
 
 <script>
     import phoneBookService from "../javascripts/phoneBookService";
-    import "../../node_modules/bootstrap/dist/css/bootstrap.css";
-    import "../../node_modules/bootstrap/dist/js/bootstrap.bundle";
-    import _ from "../../node_modules/underscore/underscore";
+    import "bootstrap/dist/css/bootstrap.css";
+    import "bootstrap/dist/js/bootstrap.bundle.js";
+    import _ from "underscore";
     import contactForm from "./ContactForm.vue";
     import modal from "./Modal.vue";
     import searchForm from "./SearchForm.vue";

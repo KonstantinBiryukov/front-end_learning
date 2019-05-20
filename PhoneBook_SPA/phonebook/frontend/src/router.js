@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
 
-// import PhoneBook from '../../views/index.twig';
+import PhoneBook from './vue/PhoneBook';
 import Page404 from './views/Page404.vue';
 
 Vue.use(Router);
@@ -22,13 +22,13 @@ export default new Router({
             name: 'about',
             component: About
         },
-        // {
-        //   path: '/phoneBook',
-        //   name: 'phoneBook',
-        //   component: PhoneBook
-        // },
         {
-            path: "*",
+          path: '/phoneBook',
+          name: 'phoneBook',
+          component: PhoneBook
+        },
+        {
+            path: '*',
             component: Page404
         }
     ]

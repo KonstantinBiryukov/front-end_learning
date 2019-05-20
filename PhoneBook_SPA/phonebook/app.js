@@ -40,6 +40,6 @@ module.exports = app;
 
 var history = require('connect-history-api-fallback');
 app.use(history({
-    index: "./views/index.twig",
+    index: "/",
     verbose: true
 }));
