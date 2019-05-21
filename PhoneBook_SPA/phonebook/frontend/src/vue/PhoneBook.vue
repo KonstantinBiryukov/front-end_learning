@@ -61,12 +61,12 @@
 
 <script>
     import phoneBookService from "../javascripts/phoneBookService";
-    import "bootstrap/dist/css/bootstrap.css";
-    import "bootstrap/dist/js/bootstrap.bundle.js";
-    import _ from "underscore";
     import contactForm from "./ContactForm.vue";
     import modal from "./Modal.vue";
     import searchForm from "./SearchForm.vue";
+    import "bootstrap/dist/css/bootstrap.css";
+    import "bootstrap/dist/js/bootstrap.bundle.js";
+    import _ from "underscore";
 
     export default {
         components: {
