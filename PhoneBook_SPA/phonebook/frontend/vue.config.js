@@ -1,5 +1,5 @@
 module.exports = {
-    outputDir: "../public/dist",
+    outputDir: "../public",
     filenameHashing: false,
 
     devServer: {

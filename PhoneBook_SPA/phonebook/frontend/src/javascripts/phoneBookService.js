@@ -12,6 +12,10 @@ export default {
         return post("/addContact", contact);
     },
     getContacts(search) {
-        return $.get("/getContacts", {search: search});
+        return $.get({
+            url: "/getContacts",
+            dataType: "json",
+            data: {search: search}
+        });
     }
 }
