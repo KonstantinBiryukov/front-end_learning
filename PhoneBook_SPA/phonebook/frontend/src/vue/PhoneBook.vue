@@ -6,54 +6,46 @@
             <div class="header-interface">
                 <search-form v-bind:isContactFound="isContactFound" v-on:search="search"
                              v-on:reset="reset"></search-form>
-                <div class="interface-col col-md-2 text-center d-inline-block" id="delete-all-interface">
-                    <div class="delete-all-button-wrapper my-3">
-                        <button type="button" class="btn btn-danger delete-all-button"
-                                title="Delete all checked contacts" @click="confirmDelete('deleteAll')">
-                            Delete all checked contacts
-                        </button>
-                        <modal v-if="showModal" @close="showModal = false" @delete-contact="deleteContact">
-                            <h5 v-cloak slot="header">Delete confirmation</h5>
-                        </modal>
-                    </div>
-                </div>
+                <v-btn class="delete-all-button red lighten-3"
+                       @click="deleteAll">
+                    Delete all checked contacts
+                </v-btn>
             </div>
         </div>
 
         <div class="row">
-            <table class="col-xl-8 col-md-8 table table-striped table-responsive-md phone-book">
-                <thead class="thead-dark">
-                <tr>
-                    <th class="align-middle">
-                        <label class="checkbox-wrapper">
-                            <input type="checkbox" name="checkboxes"
-                                   v-model="allChecked" @click="checkAll">
-                        </label>
-                    </th>
-                    <th class="align-middle">№</th>
-                    <th class="align-middle">Surname</th>
-                    <th class="align-middle">Name</th>
-                    <th class="align-middle">Phone number</th>
-                    <th class="align-middle"></th>
-                </tr>
-                </thead>
-                <tbody v-cloak v-if="contacts.length">
-                <tr v-for="(contact, index) in contacts" :key="contact.id">
-                    <td><input type="checkbox" name="contact" :value="contact.id"
-                               v-model="checkedContactsId" @click="check"></td>
-                    <td v-text="index + 1"></td>
-                    <td v-text="contact.surname"></td>
-                    <td v-text="contact.name"></td>
-                    <td v-text="contact.phoneNumber"></td>
-                    <td>
-                        <button class="show-modal" title="Delete contact" @click="confirmDelete(contact)"></button>
-                        <modal v-if="showModal" @close="showModal = false" @delete-contact="deleteContact">
-                            <h5 slot="header">Delete confirmation</h5>
-                        </modal>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <v-toolbar flat color="white">
+                <v-toolbar-title>Contacts</v-toolbar-title>
+            </v-toolbar>
+            <v-flex class="table-flex">
+                <v-data-table
+                        :headers="headers"
+                        :items="contacts"
+                        class="elevation-1"
+                        v-model="selected"
+                        select-all>
+                    <template v-slot:items="props">
+                        <td>
+                            <v-checkbox
+                                    v-model="props.selected"
+                                    primary
+                                    hide-details
+                            ></v-checkbox>
+                        </td>
+                        <td class="justify-center">{{ props.index + 1}}</td>
+                        <td class="justify-center" v-text="props.item.surname">{{ props.item.surname }}</td>
+                        <td class="justify-center">{{ props.item.name }}</td>
+                        <td class="justify-center">{{ props.item.phoneNumber }}</td>
+                        <td>
+                            <v-icon class="justify-center red lighten-3"
+                                    @click="deleteContact(props.item)">
+                                delete
+                            </v-icon>
+                        </td>
+                    </template>
+                </v-data-table>
+            </v-flex>
+
             <contact-form></contact-form>
         </div>
     </div>
@@ -62,56 +54,70 @@
 <script>
     import phoneBookService from "../javascripts/phoneBookService";
     import contactForm from "./ContactForm.vue";
-    import modal from "./Modal.vue";
     import searchForm from "./SearchForm.vue";
     import "bootstrap/dist/css/bootstrap.css";
     import "bootstrap/dist/js/bootstrap.bundle.js";
-    import _ from "underscore";
+    import _ from "underscore"
+    import "vuetify/dist/vuetify.min.css";
 
     export default {
         components: {
-            modal,
             contactForm,
             searchForm
         },
         data() {
             return {
                 contacts: [],
-                usedSearchTerm: "",
                 checked: false,
                 checkedContactsId: [],
                 allChecked: false,
                 showModal: false,
                 selectedContact: null,
-                isContactFound: true
+                isContactFound: true,
+                dialog: false,
+                selected: [],
+                headers: [
+                    {text: '#', value: 'number',},
+                    {text: 'Surname', value: 'surname'},
+                    {text: 'Name', value: 'name'},
+                    {text: 'Phone number', value: 'phoneNumber'},
+                    {text: 'Actions', value: 'action', sortable: false}
+                ]
+            }
+        },
+        watch: {
+            dialog(val) {
+                val || this.close()
             }
         },
         created() {
             this.loadContacts();
         },
         methods: {
-            deleteContact() {
-                if (this.selectedContact === null) { // re-direct to deleteAll if there're checked contacts
-                    this.deleteAll();
-                    this.showModal = false;
-                    return;
+            close() {
+                this.dialog = false;
+                setTimeout(() => {
+                    this.editedItem = Object.assign({}, this.defaultItem);
+                    this.editedIndex = -1
+                }, 300)
+            },
+            deleteContact(item) {
+                const index = this.contacts.indexOf(item);
+                confirm('Are you sure you want to delete this contact?') && this.contacts.splice(index, 1);
+
+                // if contact was removed from front-end, we need to remove it from back-end
+                if (this.contacts.indexOf(item) === -1) {
+                    phoneBookService.deleteContact(item.id).done(() => {
+                        this.loadContacts();
+                    });
                 }
-                phoneBookService.deleteContact(this.selectedContact.id).done(() => {
-                    this.loadContacts();
-                });
 
                 this.showModal = false;
                 this.selectedContact = null;
             },
-            deleteAll() {
-                phoneBookService.deleteAll(this.checkedContactsId).done(() => {
-                    this.loadContacts();
-                });
-                this.showModal = false;
-                this.allChecked = false;
-            },
             loadContacts() {
-                phoneBookService.getContacts(this.usedSearchTerm).done(contacts => {
+                phoneBookService.getContacts(this.$store.state.usedSearchTerm).done(contacts => {
+
                     // if there're no contacts from search, a response's success will be equal to "false"
                     this.contacts = contacts.contacts;
                     this.isContactFound = contacts.success;
@@ -127,17 +133,6 @@
                     this.checkedContactsId = _.intersection(showedContactsId, this.checkedContactsId);
                 });
             },
-            checkAll() {
-                this.checkedContactsId = [];
-                if (!this.allChecked) {
-                    this.checkedContactsId = this.contacts.map(contact => {
-                        return contact.id;
-                    });
-                }
-            },
-            check() {
-                this.allChecked = false;
-            },
             confirmDelete(contact) {
                 if (this.checkedContactsId.length || contact !== "deleteAll") {
                     this.showModal = true;
@@ -146,12 +141,27 @@
                     this.selectedContact = contact;
                 }
             },
+            deleteAll() {
+                // remove contacts from front-end
+                if (confirm('Are you sure you want to delete selected contacts?')) {
+                    for (let i = 0; i < this.selected.length; i++) {
+                        let index = this.contacts.indexOf(this.selected[i]);
+                        let id = this.selected[i].id;
+                        this.checkedContactsId.push(id);
+                        this.contacts.splice(index, 1);
+                    }
+                }
+                //remove contacts from back-end
+                phoneBookService.deleteAll(this.checkedContactsId).done(() => {
+                    this.loadContacts();
+                });
+            },
             search(searchField) {
-                this.usedSearchTerm = searchField;
+                this.$store.commit("changeSearch", searchField);
                 this.loadContacts();
             },
-            reset: function () {
-                this.usedSearchTerm = "";
+            reset() {
+                this.$store.commit("changeSearch", "");
                 this.checkedContactsId = [];
                 this.allChecked = false;
                 this.loadContacts();
@@ -167,10 +177,6 @@
         text-decoration: underline;
     }
 
-    [v-cloak] {
-        display: none;
-    }
-
     .title {
         @include title
     }
@@ -179,59 +185,12 @@
         padding-bottom: 15px;
     }
 
-    /* contacts table */
-    .phone-book {
-        margin-bottom: 20px; /*for browser's stretching*/
-    }
-
-    .phone-book {
-        th, td {
-            border: 2px solid black;
-            text-align: center;
-        }
-    }
-
-    /* general buttons' styles */
-    .input-form-wrapper .add-button {
-        border-radius: 7px;
-        font-weight: bold;
-        margin: 15px auto;
-    }
-
-    /* dynamic items */
-    .background-image {
-        width: 20px;
-    }
-
-    .phone-book {
-        tbody tr td:last-child button {
-            height: 25px;
-            width: 25px;
-        }
-
-        thead tr th:last-child {
-            width: 50px;
-        }
-    }
-
-    .badge {
-        top: -10px;
-    }
-
     /*delete-all-checked-contact button*/
     .delete-all-button {
         width: 230px;
     }
 
-    button[data-target="#deleteConfirmationDialog"] {
-        background-size: cover;
-        background-image: url("../images/deleteImage.png");
-        background-repeat: no-repeat;
-    }
-
-    .show-modal {
-        background-size: cover;
-        background-image: url("../images/deleteImage.png");
-        background-repeat: no-repeat;
+    .table-flex {
+        overflow: auto;
     }
 </style>

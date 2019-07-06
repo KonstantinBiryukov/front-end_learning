@@ -1,17 +1,24 @@
 <template>
     <nav class="search-field navbar navbar-light bg-light interface-col text-center d-inline-block">
         <div class="form-inline search">
-            <div class="contact-not-found" v-cloak v-show="!isContactFound">Contact not found...</div>
-            <input class="form-control mr-sm-2" id="contacts-search" type="search"
-                   placeholder="Search contact"
-                   aria-label="Search" maxlength="25"
-                   v-model="searchField">
-            <button class="btn btn-outline-primary my-2 mx-sm-2 search-button" type="button"
-                    @click="$emit('search', searchField)">Search
-            </button>
-            <button class="btn btn-outline-secondary my-2 mx-2 reset-button" type="button"
-                    @click="$emit('reset')">Reset
-            </button>
+            <v-flex>
+                <v-text-field
+                        type="search"
+                        aria-label="Search" maxlength="25"
+                        placeholder="Search contact"
+                        outline
+                        clearable
+                        v-model="searchField"
+                        :rules="searchRules"
+                ></v-text-field>
+            </v-flex>
+
+            <v-btn class="search-button" color="info" @click="$emit('search', searchField)">Search
+                <v-icon right>search</v-icon>
+            </v-btn>
+            <v-btn class="reset-button yellow lighten-3" @click="$emit('reset')">Reset
+                <v-icon right>backspace</v-icon>
+            </v-btn>
         </div>
     </nav>
 </template>
@@ -23,7 +30,10 @@
         },
         data() {
             return {
-                searchField: ""
+                searchField: "",
+                searchRules: [
+                    value => this.isContactFound === true || "Contact not found..."
+                ]
             }
         }
     }
@@ -32,12 +42,6 @@
 <style>
     .reset-button,
     .search-button {
-        width: 80px;
-    }
-
-    .contact-not-found {
-        position: absolute;
-        top: -10px;
-        background-color: indianred;
+        width: 120px;
     }
 </style>
