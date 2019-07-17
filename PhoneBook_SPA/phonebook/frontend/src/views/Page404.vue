@@ -1,5 +1,5 @@
 <template>
-    <div class="error">ERROR 404. Page not found.</div>
+    <div class="error">ERROR 404. Page not found!!!</div>
 </template>
 
 <script>

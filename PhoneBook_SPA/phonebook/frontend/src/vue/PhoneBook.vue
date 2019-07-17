@@ -6,10 +6,29 @@
             <div class="header-interface">
                 <search-form v-bind:isContactFound="isContactFound" v-on:search="search"
                              v-on:reset="reset"></search-form>
+
                 <v-btn class="delete-all-button red lighten-3"
-                       @click="deleteAll">
+                       @click.stop="dialogDeleteAll = true">
                     Delete all checked contacts
                 </v-btn>
+
+                <v-dialog persistent v-model="dialogDeleteAll" max-width="290">
+                    <v-card v-if="this.selected.length" >
+                        <v-card-title class="headline">Delete confirmation</v-card-title>
+                        <v-card-text>Are you sure you want to delete checked contacts ?</v-card-text>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="green darken-1" flat @click="dialogDeleteAll = false">NO</v-btn>
+                            <v-btn color="green darken-1" flat @click="deleteAll">YES</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                    <v-card v-else>
+                        <v-card-title color="red">ERROR</v-card-title>
+                        <v-card-text>No contacts checked</v-card-text>
+                        <v-btn color="red" flat @click="dialogDeleteAll = false">OK</v-btn>
+                    </v-card>
+                </v-dialog>
+
             </div>
         </div>
 
@@ -18,6 +37,7 @@
                 <v-toolbar-title>Contacts</v-toolbar-title>
             </v-toolbar>
             <v-flex class="table-flex">
+
                 <v-data-table
                         :headers="headers"
                         :items="contacts"
@@ -38,14 +58,26 @@
                         <td class="justify-center">{{ props.item.phoneNumber }}</td>
                         <td>
                             <v-icon class="justify-center red lighten-3"
-                                    @click="deleteContact(props.item)">
+                                    @click.stop="dialogDeleteContact = true" @click="setChosenContact(props.item)">
                                 delete
                             </v-icon>
                         </td>
                     </template>
                 </v-data-table>
-            </v-flex>
 
+                <v-dialog persistent v-model="dialogDeleteContact" max-width="290">
+                    <v-card>
+                        <v-card-title class="headline">Delete confirmation</v-card-title>
+                        <v-card-text>Are you sure you want to delete this contact ?</v-card-text>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="green darken-1" flat @click="dialogDeleteContact = false">NO</v-btn>
+                            <v-btn color="green darken-1" flat @click="deleteContact">YES</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+
+            </v-flex>
             <contact-form></contact-form>
         </div>
     </div>
@@ -67,6 +99,7 @@
         },
         data() {
             return {
+                chosenContact: "",
                 contacts: [],
                 checked: false,
                 checkedContactsId: [],
@@ -74,7 +107,8 @@
                 showModal: false,
                 selectedContact: null,
                 isContactFound: true,
-                dialog: false,
+                dialogDeleteContact: false,
+                dialogDeleteAll: false,
                 selected: [],
                 headers: [
                     {text: '#', value: 'number',},
@@ -85,29 +119,21 @@
                 ]
             }
         },
-        watch: {
-            dialog(val) {
-                val || this.close()
-            }
-        },
         created() {
             this.loadContacts();
         },
         methods: {
-            close() {
-                this.dialog = false;
-                setTimeout(() => {
-                    this.editedItem = Object.assign({}, this.defaultItem);
-                    this.editedIndex = -1
-                }, 300)
+            setChosenContact(contact) {
+                this.chosenContact = contact;
             },
-            deleteContact(item) {
-                const index = this.contacts.indexOf(item);
-                confirm('Are you sure you want to delete this contact?') && this.contacts.splice(index, 1);
+            deleteContact() {
+                this.dialogDeleteContact = false;
+                const index = this.contacts.indexOf(this.chosenContact);
+                this.contacts.splice(index, 1);
 
                 // if contact was removed from front-end, we need to remove it from back-end
-                if (this.contacts.indexOf(item) === -1) {
-                    phoneBookService.deleteContact(item.id).done(() => {
+                if (this.contacts.indexOf(this.chosenContact) === -1) {
+                    phoneBookService.deleteContact(this.chosenContact.id).done(() => {
                         this.loadContacts();
                     });
                 }
@@ -133,23 +159,15 @@
                     this.checkedContactsId = _.intersection(showedContactsId, this.checkedContactsId);
                 });
             },
-            confirmDelete(contact) {
-                if (this.checkedContactsId.length || contact !== "deleteAll") {
-                    this.showModal = true;
-                }
-                if (contact !== "deleteAll") {
-                    this.selectedContact = contact;
-                }
-            },
             deleteAll() {
+                this.dialogDeleteAll = false;
+
                 // remove contacts from front-end
-                if (confirm('Are you sure you want to delete selected contacts?')) {
-                    for (let i = 0; i < this.selected.length; i++) {
-                        let index = this.contacts.indexOf(this.selected[i]);
-                        let id = this.selected[i].id;
-                        this.checkedContactsId.push(id);
-                        this.contacts.splice(index, 1);
-                    }
+                for (let i = 0; i < this.selected.length; i++) {
+                    let index = this.contacts.indexOf(this.selected[i]);
+                    let id = this.selected[i].id;
+                    this.checkedContactsId.push(id);
+                    this.contacts.splice(index, 1);
                 }
                 //remove contacts from back-end
                 phoneBookService.deleteAll(this.checkedContactsId).done(() => {

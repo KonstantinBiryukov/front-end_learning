@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import MainMenu from './vue/MainMenu.vue'
 import About from './views/About.vue'
 
 import PhoneBook from './vue/PhoneBook';
@@ -18,9 +17,10 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'mainMenu',
-            component: MainMenu
+            name: 'home',
+            component: Home
         },
+
         {
             path: '/home',
             name: 'home',
@@ -37,7 +37,8 @@ export default new Router({
             component: PhoneBook
         },
         {
-            path: '*',
+            path: '/*',
+            name: "404",
             component: Page404
         }
     ]

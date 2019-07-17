@@ -1,8 +1,8 @@
 <template>
     <div>
-        <v-navigation-drawer app temporary v-model="drawer" fixed>
+        <v-navigation-drawer app v-model="drawer" fixed>
             <v-list dense>
-                <v-list-tile v-for="(item, i) in menuItems" :key="'menuitem${i}'" :to="item.route">
+                <v-list-tile class="router-menu" v-for="(item, i) in menuItems" :key="'menuitem${i}'" :to="item.route">
                     <v-list-tile-action>
                         <v-icon v-html="item.icon"></v-icon>
                     </v-list-tile-action>
@@ -49,3 +49,9 @@
         }
     }
 </script>
+
+<style>
+    .router-menu a {
+        text-decoration: none;
+    }
+</style>

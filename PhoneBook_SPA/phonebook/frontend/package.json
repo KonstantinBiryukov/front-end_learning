@@ -9,7 +9,7 @@
     "start": "npm run serve"
   },
   "dependencies": {
-    "bootstrap": "n^4.3.1",
+    "bootstrap": "^4.3.1",
     "jquery": "^3.4.1",
     "underscore": "^1.9.1",
     "vue": "^2.6.10",
