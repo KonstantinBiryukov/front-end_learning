@@ -1,6 +1,8 @@
 <template>
-    <div class="container" id="phone-book">
-        <p class="h1 title align-middle font-weight-bold">Phone Book</p>
+    <div class="container pl-0" id="phone-book">
+        <div class="row">
+            <p class="h1 title font-weight-bold">Phone Book</p>
+        </div>
 
         <div class="row">
             <div class="header-interface">
@@ -13,7 +15,7 @@
                 </v-btn>
 
                 <v-dialog persistent v-model="dialogDeleteAll" max-width="290">
-                    <v-card v-if="this.selected.length" >
+                    <v-card v-if="this.selected.length">
                         <v-card-title class="headline">Delete confirmation</v-card-title>
                         <v-card-text>Are you sure you want to delete checked contacts ?</v-card-text>
                         <v-card-actions>
@@ -191,7 +193,6 @@
 <style lang="scss">
     @mixin title {
         font-size: 30px;
-        margin: 30px;
         text-decoration: underline;
     }
 
@@ -203,9 +204,8 @@
         padding-bottom: 15px;
     }
 
-    /*delete-all-checked-contact button*/
     .delete-all-button {
-        width: 230px;
+        margin-bottom: 9px;
     }
 
     .table-flex {

@@ -107,5 +107,12 @@
 <style lang="scss">
     .input-form-wrapper {
         box-shadow: 0 0 20px rgba(0, 0, 50, 0.5);
+        padding: 10px;
+        line-height: 12px;
+        height: 350px;
+    }
+
+    .v-input__slot {
+        margin-bottom: 0;
     }
 </style>

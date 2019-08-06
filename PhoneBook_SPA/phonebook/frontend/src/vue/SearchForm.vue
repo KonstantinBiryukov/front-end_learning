@@ -1,10 +1,11 @@
 <template>
-    <nav class="search-field navbar navbar-light bg-light interface-col text-center d-inline-block">
+    <nav class="pl-0 search-field navbar navbar-light bg-light interface-col text-center d-inline-block">
         <v-form id="search-form">
             <div class="form-inline search">
                 <v-flex>
                     <v-form ref="form" v-model="valid" lazy-validation>
                         <v-text-field
+                                class="text-field-input"
                                 type="search"
                                 aria-label="Search" maxlength="25"
                                 placeholder="Search contact"
