@@ -205,7 +205,8 @@
     }
 
     .delete-all-button {
-        margin-bottom: 9px;
+        height: 58px;
+        margin-bottom: 29px;
     }
 
     .table-flex {

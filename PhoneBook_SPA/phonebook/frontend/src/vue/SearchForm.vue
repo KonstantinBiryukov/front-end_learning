@@ -53,5 +53,7 @@
     .reset-button,
     .search-button {
         width: 120px;
+        height: 58px;
+        margin-bottom: 26px;
     }
 </style>
